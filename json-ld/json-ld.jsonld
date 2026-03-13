@@ -1,0 +1,68 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "script": "https://script.googleapis.com/v1/",
+    "goog": "https://developers.google.com/apps-script/api/reference/rest/v1/",
+    "name": "schema:name",
+    "description": "schema:description",
+    "url": "schema:url",
+    "provider": "schema:provider",
+    "Project": {
+      "@id": "goog:projects",
+      "@context": {
+        "scriptId": "schema:identifier",
+        "title": "schema:name",
+        "parentId": "schema:isPartOf",
+        "createTime": "schema:dateCreated",
+        "updateTime": "schema:dateModified",
+        "creator": "schema:creator"
+      }
+    },
+    "File": {
+      "@id": "schema:SoftwareSourceCode",
+      "@context": {
+        "name": "schema:name",
+        "type": "schema:programmingLanguage",
+        "source": "schema:text",
+        "createTime": "schema:dateCreated",
+        "updateTime": "schema:dateModified"
+      }
+    },
+    "Deployment": {
+      "@id": "goog:projects.deployments",
+      "@context": {
+        "deploymentId": "schema:identifier",
+        "deploymentConfig": "schema:softwareRequirements",
+        "updateTime": "schema:dateModified"
+      }
+    },
+    "Version": {
+      "@id": "goog:projects.versions",
+      "@context": {
+        "versionNumber": "schema:version",
+        "description": "schema:description",
+        "createTime": "schema:dateCreated"
+      }
+    },
+    "Process": {
+      "@id": "goog:processes",
+      "@context": {
+        "projectName": "schema:name",
+        "functionName": "schema:description",
+        "processType": "schema:additionalType",
+        "processStatus": "schema:status",
+        "startTime": "schema:startDate",
+        "duration": "schema:duration"
+      }
+    }
+  },
+  "@type": "WebAPI",
+  "name": "Google Apps Script API",
+  "description": "The Apps Script API manages Google Apps Script projects, deployments, versions, and script execution processes.",
+  "url": "https://developers.google.com/apps-script/api/concepts",
+  "provider": {
+    "@type": "Organization",
+    "name": "Google",
+    "url": "https://developers.google.com"
+  }
+}

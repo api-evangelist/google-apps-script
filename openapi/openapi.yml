@@ -1,0 +1,552 @@
+openapi: 3.1.0
+info:
+  title: Google Apps Script API
+  description: >-
+    The Apps Script API manages Google Apps Script projects, deployments,
+    versions, and processes. It supports creating script projects, updating
+    content, managing deployments, monitoring execution processes, and remotely
+    running script functions.
+  version: v1
+  contact:
+    name: Google
+    url: https://developers.google.com/apps-script/api/concepts
+servers:
+  - url: https://script.googleapis.com
+paths:
+  /v1/projects:
+    post:
+      operationId: createProject
+      summary: Create project
+      description: Creates a new, empty script project with no script files.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProjectRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+  /v1/projects/{scriptId}:
+    get:
+      operationId: getProject
+      summary: Get project
+      description: Gets a script project's metadata.
+      parameters:
+        - name: scriptId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+  /v1/projects/{scriptId}/content:
+    get:
+      operationId: getProjectContent
+      summary: Get project content
+      description: Gets the content of the script project including code source and metadata.
+      parameters:
+        - name: scriptId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: versionNumber
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Content'
+    put:
+      operationId: updateProjectContent
+      summary: Update project content
+      description: Updates the content of the specified script project.
+      parameters:
+        - name: scriptId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Content'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Content'
+  /v1/projects/{scriptId}/metrics:
+    get:
+      operationId: getProjectMetrics
+      summary: Get project metrics
+      description: Get metrics data for scripts such as number of executions and active users.
+      parameters:
+        - name: scriptId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: metricsGranularity
+          in: query
+          schema:
+            type: string
+            enum: [UNSPECIFIED_GRANULARITY, WEEKLY, DAILY]
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Metrics'
+  /v1/projects/{scriptId}/deployments:
+    get:
+      operationId: listDeployments
+      summary: List deployments
+      description: Lists the deployments of an Apps Script project.
+      parameters:
+        - name: scriptId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+        - name: pageToken
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListDeploymentsResponse'
+    post:
+      operationId: createDeployment
+      summary: Create deployment
+      description: Creates a deployment of an Apps Script project.
+      parameters:
+        - name: scriptId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeploymentConfig'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Deployment'
+  /v1/projects/{scriptId}/deployments/{deploymentId}:
+    get:
+      operationId: getDeployment
+      summary: Get deployment
+      description: Gets a deployment of an Apps Script project.
+      parameters:
+        - name: scriptId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: deploymentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Deployment'
+    put:
+      operationId: updateDeployment
+      summary: Update deployment
+      description: Updates a deployment of an Apps Script project.
+      parameters:
+        - name: scriptId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: deploymentId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDeploymentRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Deployment'
+    delete:
+      operationId: deleteDeployment
+      summary: Delete deployment
+      description: Deletes a deployment of an Apps Script project.
+      parameters:
+        - name: scriptId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: deploymentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+  /v1/projects/{scriptId}/versions:
+    get:
+      operationId: listVersions
+      summary: List versions
+      description: List the versions of a script project.
+      parameters:
+        - name: scriptId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+        - name: pageToken
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListVersionsResponse'
+    post:
+      operationId: createVersion
+      summary: Create version
+      description: Creates a new immutable version using the current code.
+      parameters:
+        - name: scriptId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Version'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Version'
+  /v1/projects/{scriptId}/versions/{versionNumber}:
+    get:
+      operationId: getVersion
+      summary: Get version
+      description: Gets a version of a script project.
+      parameters:
+        - name: scriptId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: versionNumber
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Version'
+  /v1/scripts/{scriptId}:run:
+    post:
+      operationId: runScript
+      summary: Run script
+      description: Runs a function in an Apps Script project.
+      parameters:
+        - name: scriptId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExecutionRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Operation'
+  /v1/processes:
+    get:
+      operationId: listProcesses
+      summary: List processes
+      description: List information about processes made by or on behalf of a user.
+      parameters:
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+        - name: pageToken
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListProcessesResponse'
+  /v1/processes:listScriptProcesses:
+    get:
+      operationId: listScriptProcesses
+      summary: List script processes
+      description: List information about a script's executed processes.
+      parameters:
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+        - name: pageToken
+          in: query
+          schema:
+            type: string
+        - name: scriptId
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListProcessesResponse'
+components:
+  schemas:
+    Project:
+      type: object
+      properties:
+        scriptId:
+          type: string
+        title:
+          type: string
+        parentId:
+          type: string
+        createTime:
+          type: string
+          format: date-time
+        updateTime:
+          type: string
+          format: date-time
+        creator:
+          type: object
+          properties:
+            email:
+              type: string
+            name:
+              type: string
+    CreateProjectRequest:
+      type: object
+      properties:
+        title:
+          type: string
+        parentId:
+          type: string
+    Content:
+      type: object
+      properties:
+        scriptId:
+          type: string
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/File'
+    File:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+          enum: [ENUM_TYPE_UNSPECIFIED, SERVER_JS, HTML, JSON]
+        source:
+          type: string
+        createTime:
+          type: string
+          format: date-time
+        updateTime:
+          type: string
+          format: date-time
+    Deployment:
+      type: object
+      properties:
+        deploymentId:
+          type: string
+        deploymentConfig:
+          $ref: '#/components/schemas/DeploymentConfig'
+        updateTime:
+          type: string
+          format: date-time
+    DeploymentConfig:
+      type: object
+      properties:
+        scriptId:
+          type: string
+        versionNumber:
+          type: integer
+        manifestFileName:
+          type: string
+        description:
+          type: string
+    UpdateDeploymentRequest:
+      type: object
+      properties:
+        deploymentConfig:
+          $ref: '#/components/schemas/DeploymentConfig'
+    ListDeploymentsResponse:
+      type: object
+      properties:
+        deployments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Deployment'
+        nextPageToken:
+          type: string
+    Version:
+      type: object
+      properties:
+        versionNumber:
+          type: integer
+        description:
+          type: string
+        createTime:
+          type: string
+          format: date-time
+        scriptId:
+          type: string
+    ListVersionsResponse:
+      type: object
+      properties:
+        versions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Version'
+        nextPageToken:
+          type: string
+    Metrics:
+      type: object
+      properties:
+        activeUsers:
+          type: array
+          items:
+            type: object
+        totalExecutions:
+          type: array
+          items:
+            type: object
+        failedExecutions:
+          type: array
+          items:
+            type: object
+    ExecutionRequest:
+      type: object
+      properties:
+        function:
+          type: string
+        parameters:
+          type: array
+          items: {}
+        sessionState:
+          type: string
+        devMode:
+          type: boolean
+    Operation:
+      type: object
+      properties:
+        done:
+          type: boolean
+        response:
+          type: object
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+            message:
+              type: string
+    Process:
+      type: object
+      properties:
+        projectName:
+          type: string
+        functionName:
+          type: string
+        processType:
+          type: string
+        processStatus:
+          type: string
+        startTime:
+          type: string
+          format: date-time
+        duration:
+          type: string
+    ListProcessesResponse:
+      type: object
+      properties:
+        processes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Process'
+        nextPageToken:
+          type: string

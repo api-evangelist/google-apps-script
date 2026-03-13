@@ -1,0 +1,161 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://raw.githubusercontent.com/api-evangelist/google-apps-script/refs/heads/main/json-schema/json-schema.yml
+title: Google Apps Script API Schemas
+description: JSON Schema definitions for the Google Apps Script API resources.
+type: object
+$defs:
+  Project:
+    type: object
+    title: Apps Script Project
+    description: A Google Apps Script project.
+    properties:
+      scriptId:
+        type: string
+        description: The script project's Drive ID.
+      title:
+        type: string
+        description: The title for the project.
+      parentId:
+        type: string
+        description: The Drive ID of the parent file (container-bound scripts only).
+      createTime:
+        type: string
+        format: date-time
+        description: When the script was created.
+      updateTime:
+        type: string
+        format: date-time
+        description: When the script was last updated.
+      creator:
+        type: object
+        description: The user who originally created the script.
+        properties:
+          email:
+            type: string
+          name:
+            type: string
+          photoUrl:
+            type: string
+  File:
+    type: object
+    title: Script File
+    description: A file within an Apps Script project.
+    properties:
+      name:
+        type: string
+        description: The name of the file.
+      type:
+        type: string
+        description: The type of the file.
+        enum: [ENUM_TYPE_UNSPECIFIED, SERVER_JS, HTML, JSON]
+      source:
+        type: string
+        description: The file content.
+      createTime:
+        type: string
+        format: date-time
+      updateTime:
+        type: string
+        format: date-time
+      lastModifyUser:
+        type: object
+        properties:
+          email:
+            type: string
+          name:
+            type: string
+      functionSet:
+        type: object
+        properties:
+          values:
+            type: array
+            items:
+              type: object
+              properties:
+                name:
+                  type: string
+  Deployment:
+    type: object
+    title: Deployment
+    description: A deployment of an Apps Script project.
+    properties:
+      deploymentId:
+        type: string
+        description: The deployment ID.
+      deploymentConfig:
+        $ref: '#/$defs/DeploymentConfig'
+      updateTime:
+        type: string
+        format: date-time
+      entryPoints:
+        type: array
+        items:
+          type: object
+          properties:
+            entryPointType:
+              type: string
+            webApp:
+              type: object
+              properties:
+                url:
+                  type: string
+                  format: uri
+                entryPointUri:
+                  type: string
+                  format: uri
+  DeploymentConfig:
+    type: object
+    title: Deployment Configuration
+    description: Configuration for a deployment.
+    properties:
+      scriptId:
+        type: string
+      versionNumber:
+        type: integer
+      manifestFileName:
+        type: string
+      description:
+        type: string
+  Version:
+    type: object
+    title: Script Version
+    description: An immutable version of an Apps Script project.
+    properties:
+      versionNumber:
+        type: integer
+        description: The incremental ID assigned to the version.
+      description:
+        type: string
+        description: The description for this version.
+      createTime:
+        type: string
+        format: date-time
+      scriptId:
+        type: string
+  Process:
+    type: object
+    title: Process
+    description: Information about an Apps Script execution process.
+    properties:
+      projectName:
+        type: string
+        description: Name of the script project.
+      functionName:
+        type: string
+        description: Name of the function that was executed.
+      processType:
+        type: string
+        description: Type of the process.
+        enum: [PROCESS_TYPE_UNSPECIFIED, RUNNING_SCRIPT, ADD_ON, SIMPLE_TRIGGER, MENU, BATCH_TASK, WEBAPP, EDITOR, TIME_DRIVEN, EXECUTION_API]
+      processStatus:
+        type: string
+        description: Status of the process.
+        enum: [PROCESS_STATUS_UNSPECIFIED, RUNNING, PAUSED, COMPLETED, CANCELED, FAILED, TIMED_OUT, UNKNOWN, DELAYED]
+      startTime:
+        type: string
+        format: date-time
+      duration:
+        type: string
+        description: Duration in seconds.
+      userAccessLevel:
+        type: string
