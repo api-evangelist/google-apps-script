@@ -1,3 +1,4 @@
+aid: google-apps-script
 name: Google Apps Script
 description: >-
   The Apps Script API provides programmatic access to manage Google Apps Script
@@ -6,11 +7,12 @@ description: >-
   processes, and remotely executing Apps Script functions. The API is essential
   for automating Apps Script project management and integrating script execution
   into external applications.
+type: Index
 image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/google-apps-script/refs/heads/main/apis.yml
 created: '2026-03-13'
-modified: '2026-03-13'
-specificationVersion: '0.18'
+modified: '2026-03-16'
+specificationVersion: '0.19'
 tags:
   - Automation
   - Scripting
@@ -19,7 +21,8 @@ tags:
   - Apps Script
   - Deployments
 apis:
-  - name: Google Apps Script API
+  - aid: google-apps-script:google-apps-script
+    name: Google Apps Script API
     description: >-
       The Apps Script API manages Google Apps Script projects, deployments,
       versions, and processes. It supports creating script projects, updating
@@ -40,7 +43,7 @@ apis:
       - Deployments
       - Projects
 common:
-  - type: GettingStarted
+  - type: Getting Started
     url: https://developers.google.com/apps-script/api/concepts
   - type: Pricing
     url: https://developers.google.com/apps-script/guides/services/quotas
