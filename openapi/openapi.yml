@@ -16,7 +16,7 @@ paths:
   /v1/projects:
     post:
       operationId: createProject
-      summary: Create project
+      summary: Google Apps Script Create project
       description: Creates a new, empty script project with no script files.
       requestBody:
         content:
@@ -33,7 +33,7 @@ paths:
   /v1/projects/{scriptId}:
     get:
       operationId: getProject
-      summary: Get project
+      summary: Google Apps Script Get project
       description: Gets a script project's metadata.
       parameters:
         - name: scriptId
@@ -51,7 +51,7 @@ paths:
   /v1/projects/{scriptId}/content:
     get:
       operationId: getProjectContent
-      summary: Get project content
+      summary: Google Apps Script Get project content
       description: Gets the content of the script project including code source and metadata.
       parameters:
         - name: scriptId
@@ -72,7 +72,7 @@ paths:
                 $ref: '#/components/schemas/Content'
     put:
       operationId: updateProjectContent
-      summary: Update project content
+      summary: Google Apps Script Update project content
       description: Updates the content of the specified script project.
       parameters:
         - name: scriptId
@@ -95,7 +95,7 @@ paths:
   /v1/projects/{scriptId}/metrics:
     get:
       operationId: getProjectMetrics
-      summary: Get project metrics
+      summary: Google Apps Script Get project metrics
       description: Get metrics data for scripts such as number of executions and active users.
       parameters:
         - name: scriptId
@@ -118,7 +118,7 @@ paths:
   /v1/projects/{scriptId}/deployments:
     get:
       operationId: listDeployments
-      summary: List deployments
+      summary: Google Apps Script List deployments
       description: Lists the deployments of an Apps Script project.
       parameters:
         - name: scriptId
@@ -143,7 +143,7 @@ paths:
                 $ref: '#/components/schemas/ListDeploymentsResponse'
     post:
       operationId: createDeployment
-      summary: Create deployment
+      summary: Google Apps Script Create deployment
       description: Creates a deployment of an Apps Script project.
       parameters:
         - name: scriptId
@@ -166,7 +166,7 @@ paths:
   /v1/projects/{scriptId}/deployments/{deploymentId}:
     get:
       operationId: getDeployment
-      summary: Get deployment
+      summary: Google Apps Script Get deployment
       description: Gets a deployment of an Apps Script project.
       parameters:
         - name: scriptId
@@ -188,7 +188,7 @@ paths:
                 $ref: '#/components/schemas/Deployment'
     put:
       operationId: updateDeployment
-      summary: Update deployment
+      summary: Google Apps Script Update deployment
       description: Updates a deployment of an Apps Script project.
       parameters:
         - name: scriptId
@@ -215,7 +215,7 @@ paths:
                 $ref: '#/components/schemas/Deployment'
     delete:
       operationId: deleteDeployment
-      summary: Delete deployment
+      summary: Google Apps Script Delete deployment
       description: Deletes a deployment of an Apps Script project.
       parameters:
         - name: scriptId
@@ -234,7 +234,7 @@ paths:
   /v1/projects/{scriptId}/versions:
     get:
       operationId: listVersions
-      summary: List versions
+      summary: Google Apps Script List versions
       description: List the versions of a script project.
       parameters:
         - name: scriptId
@@ -259,7 +259,7 @@ paths:
                 $ref: '#/components/schemas/ListVersionsResponse'
     post:
       operationId: createVersion
-      summary: Create version
+      summary: Google Apps Script Create version
       description: Creates a new immutable version using the current code.
       parameters:
         - name: scriptId
@@ -282,7 +282,7 @@ paths:
   /v1/projects/{scriptId}/versions/{versionNumber}:
     get:
       operationId: getVersion
-      summary: Get version
+      summary: Google Apps Script Get version
       description: Gets a version of a script project.
       parameters:
         - name: scriptId
@@ -305,7 +305,7 @@ paths:
   /v1/scripts/{scriptId}:run:
     post:
       operationId: runScript
-      summary: Run script
+      summary: Google Apps Script Run script
       description: Runs a function in an Apps Script project.
       parameters:
         - name: scriptId
@@ -328,7 +328,7 @@ paths:
   /v1/processes:
     get:
       operationId: listProcesses
-      summary: List processes
+      summary: Google Apps Script List processes
       description: List information about processes made by or on behalf of a user.
       parameters:
         - name: pageSize
@@ -349,7 +349,7 @@ paths:
   /v1/processes:listScriptProcesses:
     get:
       operationId: listScriptProcesses
-      summary: List script processes
+      summary: Google Apps Script List script processes
       description: List information about a script's executed processes.
       parameters:
         - name: pageSize
