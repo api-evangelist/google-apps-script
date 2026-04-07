@@ -30,6 +30,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Project'
+      tags:
+        - Projects
   /v1/projects/{scriptId}:
     get:
       operationId: getProject
@@ -48,6 +50,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Project'
+      tags:
+        - Projects
   /v1/projects/{scriptId}/content:
     get:
       operationId: getProjectContent
@@ -70,6 +74,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Content'
+      tags:
+        - Projects
     put:
       operationId: updateProjectContent
       summary: Google Apps Script Update project content
@@ -92,6 +98,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Content'
+      tags:
+        - Projects
   /v1/projects/{scriptId}/metrics:
     get:
       operationId: getProjectMetrics
@@ -115,6 +123,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Metrics'
+      tags:
+        - Projects
   /v1/projects/{scriptId}/deployments:
     get:
       operationId: listDeployments
@@ -141,6 +151,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListDeploymentsResponse'
+      tags:
+        - Projects
     post:
       operationId: createDeployment
       summary: Google Apps Script Create deployment
@@ -163,6 +175,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Deployment'
+      tags:
+        - Projects
   /v1/projects/{scriptId}/deployments/{deploymentId}:
     get:
       operationId: getDeployment
@@ -186,6 +200,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Deployment'
+      tags:
+        - Projects
     put:
       operationId: updateDeployment
       summary: Google Apps Script Update deployment
@@ -213,6 +229,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Deployment'
+      tags:
+        - Projects
     delete:
       operationId: deleteDeployment
       summary: Google Apps Script Delete deployment
@@ -231,6 +249,8 @@ paths:
       responses:
         '200':
           description: Successful response
+      tags:
+        - Projects
   /v1/projects/{scriptId}/versions:
     get:
       operationId: listVersions
@@ -257,6 +277,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListVersionsResponse'
+      tags:
+        - Projects
     post:
       operationId: createVersion
       summary: Google Apps Script Create version
@@ -279,6 +301,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Version'
+      tags:
+        - Projects
   /v1/projects/{scriptId}/versions/{versionNumber}:
     get:
       operationId: getVersion
@@ -302,6 +326,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Version'
+      tags:
+        - Projects
   /v1/scripts/{scriptId}:run:
     post:
       operationId: runScript
@@ -325,6 +351,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Operation'
+      tags:
+        - Scripts
   /v1/processes:
     get:
       operationId: listProcesses
@@ -346,6 +374,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListProcessesResponse'
+      tags:
+        - Processes
   /v1/processes:listScriptProcesses:
     get:
       operationId: listScriptProcesses
@@ -372,6 +402,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListProcessesResponse'
+      tags:
+        - processes:listScriptProcesses
 components:
   schemas:
     Project:
@@ -550,3 +582,8 @@ components:
             $ref: '#/components/schemas/Process'
         nextPageToken:
           type: string
+tags:
+  - name: Processes
+  - name: processes:listScriptProcesses
+  - name: Projects
+  - name: Scripts
