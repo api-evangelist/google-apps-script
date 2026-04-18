@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "Operation",
+  "type": "object",
+  "properties": {
+    "done": {
+      "type": "boolean"
+    },
+    "response": {
+      "type": "object"
+    },
+    "error": {
+      "type": "object"
+    }
+  }
+}

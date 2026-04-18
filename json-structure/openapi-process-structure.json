@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "Process",
+  "type": "object",
+  "properties": {
+    "projectName": {
+      "type": "string"
+    },
+    "functionName": {
+      "type": "string"
+    },
+    "processType": {
+      "type": "string"
+    },
+    "processStatus": {
+      "type": "string"
+    },
+    "startTime": {
+      "type": "string"
+    },
+    "duration": {
+      "type": "string"
+    }
+  }
+}

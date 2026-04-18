@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ListDeploymentsResponse",
+  "type": "object",
+  "properties": {
+    "deployments": {
+      "type": "array"
+    },
+    "nextPageToken": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "Version",
+  "type": "object",
+  "properties": {
+    "versionNumber": {
+      "type": "integer"
+    },
+    "description": {
+      "type": "string"
+    },
+    "createTime": {
+      "type": "string"
+    },
+    "scriptId": {
+      "type": "string"
+    }
+  }
+}

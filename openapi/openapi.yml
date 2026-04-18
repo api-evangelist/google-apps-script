@@ -11,18 +11,25 @@ info:
     name: Google
     url: https://developers.google.com/apps-script/api/concepts
 servers:
-  - url: https://script.googleapis.com
+- url: https://script.googleapis.com
 paths:
   /v1/projects:
     post:
       operationId: createProject
-      summary: Google Apps Script Create project
+      summary: Google Apps Script Create Project
       description: Creates a new, empty script project with no script files.
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/CreateProjectRequest'
+            examples:
+              CreateprojectRequestExample:
+                summary: Default createProject request
+                x-microcks-default: true
+                value:
+                  title: Example Title
+                  parentId: '500123'
       responses:
         '200':
           description: Successful response
@@ -30,19 +37,36 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Project'
+              examples:
+                Createproject200Example:
+                  summary: Default createProject 200 response
+                  x-microcks-default: true
+                  value:
+                    scriptId: '500123'
+                    title: Example Title
+                    parentId: '500123'
+                    createTime: '2026-01-15T10:30:00Z'
+                    updateTime: '2026-01-15T10:30:00Z'
+                    creator:
+                      email: user@example.com
+                      name: Example Title
       tags:
-        - Projects
+      - Projects
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /v1/projects/{scriptId}:
     get:
       operationId: getProject
-      summary: Google Apps Script Get project
+      summary: Google Apps Script Get Project
       description: Gets a script project's metadata.
       parameters:
-        - name: scriptId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: scriptId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: '500123'
       responses:
         '200':
           description: Successful response
@@ -50,23 +74,41 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Project'
+              examples:
+                Getproject200Example:
+                  summary: Default getProject 200 response
+                  x-microcks-default: true
+                  value:
+                    scriptId: '500123'
+                    title: Example Title
+                    parentId: '500123'
+                    createTime: '2026-01-15T10:30:00Z'
+                    updateTime: '2026-01-15T10:30:00Z'
+                    creator:
+                      email: user@example.com
+                      name: Example Title
       tags:
-        - Projects
+      - Projects
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /v1/projects/{scriptId}/content:
     get:
       operationId: getProjectContent
-      summary: Google Apps Script Get project content
+      summary: Google Apps Script Get Project Content
       description: Gets the content of the script project including code source and metadata.
       parameters:
-        - name: scriptId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: versionNumber
-          in: query
-          schema:
-            type: integer
+      - name: scriptId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: '500123'
+      - name: versionNumber
+        in: query
+        schema:
+          type: integer
+        example: 10
       responses:
         '200':
           description: Successful response
@@ -74,23 +116,51 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Content'
+              examples:
+                Getprojectcontent200Example:
+                  summary: Default getProjectContent 200 response
+                  x-microcks-default: true
+                  value:
+                    scriptId: '500123'
+                    files:
+                    - name: Example Title
+                      type: ENUM_TYPE_UNSPECIFIED
+                      source: example_value
+                      createTime: '2026-01-15T10:30:00Z'
+                      updateTime: '2026-01-15T10:30:00Z'
       tags:
-        - Projects
+      - Projects
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     put:
       operationId: updateProjectContent
-      summary: Google Apps Script Update project content
+      summary: Google Apps Script Update Project Content
       description: Updates the content of the specified script project.
       parameters:
-        - name: scriptId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: scriptId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: '500123'
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/Content'
+            examples:
+              UpdateprojectcontentRequestExample:
+                summary: Default updateProjectContent request
+                x-microcks-default: true
+                value:
+                  scriptId: '500123'
+                  files:
+                  - name: Example Title
+                    type: ENUM_TYPE_UNSPECIFIED
+                    source: example_value
+                    createTime: '2026-01-15T10:30:00Z'
+                    updateTime: '2026-01-15T10:30:00Z'
       responses:
         '200':
           description: Successful response
@@ -98,24 +168,41 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Content'
+              examples:
+                Updateprojectcontent200Example:
+                  summary: Default updateProjectContent 200 response
+                  x-microcks-default: true
+                  value:
+                    scriptId: '500123'
+                    files:
+                    - name: Example Title
+                      type: ENUM_TYPE_UNSPECIFIED
+                      source: example_value
+                      createTime: '2026-01-15T10:30:00Z'
+                      updateTime: '2026-01-15T10:30:00Z'
       tags:
-        - Projects
+      - Projects
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /v1/projects/{scriptId}/metrics:
     get:
       operationId: getProjectMetrics
-      summary: Google Apps Script Get project metrics
+      summary: Google Apps Script Get Project Metrics
       description: Get metrics data for scripts such as number of executions and active users.
       parameters:
-        - name: scriptId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: metricsGranularity
-          in: query
-          schema:
-            type: string
-            enum: [UNSPECIFIED_GRANULARITY, WEEKLY, DAILY]
+      - name: scriptId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: '500123'
+      - name: metricsGranularity
+        in: query
+        schema:
+          type: string
+          enum: [UNSPECIFIED_GRANULARITY, WEEKLY, DAILY]
+        example: UNSPECIFIED_GRANULARITY
       responses:
         '200':
           description: Successful response
@@ -123,27 +210,44 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Metrics'
+              examples:
+                Getprojectmetrics200Example:
+                  summary: Default getProjectMetrics 200 response
+                  x-microcks-default: true
+                  value:
+                    activeUsers:
+                    - {}
+                    totalExecutions:
+                    - {}
+                    failedExecutions:
+                    - {}
       tags:
-        - Projects
+      - Projects
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /v1/projects/{scriptId}/deployments:
     get:
       operationId: listDeployments
-      summary: Google Apps Script List deployments
+      summary: Google Apps Script List Deployments
       description: Lists the deployments of an Apps Script project.
       parameters:
-        - name: scriptId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: pageSize
-          in: query
-          schema:
-            type: integer
-        - name: pageToken
-          in: query
-          schema:
-            type: string
+      - name: scriptId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: '500123'
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+        example: 10
+      - name: pageToken
+        in: query
+        schema:
+          type: string
+        example: example_value
       responses:
         '200':
           description: Successful response
@@ -151,23 +255,45 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListDeploymentsResponse'
+              examples:
+                Listdeployments200Example:
+                  summary: Default listDeployments 200 response
+                  x-microcks-default: true
+                  value:
+                    deployments:
+                    - deploymentId: '500123'
+                      updateTime: '2026-01-15T10:30:00Z'
+                    nextPageToken: example_value
       tags:
-        - Projects
+      - Projects
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
       operationId: createDeployment
-      summary: Google Apps Script Create deployment
+      summary: Google Apps Script Create Deployment
       description: Creates a deployment of an Apps Script project.
       parameters:
-        - name: scriptId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: scriptId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: '500123'
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/DeploymentConfig'
+            examples:
+              CreatedeploymentRequestExample:
+                summary: Default createDeployment request
+                x-microcks-default: true
+                value:
+                  scriptId: '500123'
+                  versionNumber: 10
+                  manifestFileName: example_value
+                  description: A sample description.
       responses:
         '200':
           description: Successful response
@@ -175,24 +301,41 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Deployment'
+              examples:
+                Createdeployment200Example:
+                  summary: Default createDeployment 200 response
+                  x-microcks-default: true
+                  value:
+                    deploymentId: '500123'
+                    deploymentConfig:
+                      scriptId: '500123'
+                      versionNumber: 10
+                      manifestFileName: example_value
+                      description: A sample description.
+                    updateTime: '2026-01-15T10:30:00Z'
       tags:
-        - Projects
+      - Projects
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /v1/projects/{scriptId}/deployments/{deploymentId}:
     get:
       operationId: getDeployment
-      summary: Google Apps Script Get deployment
+      summary: Google Apps Script Get Deployment
       description: Gets a deployment of an Apps Script project.
       parameters:
-        - name: scriptId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: deploymentId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: scriptId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: '500123'
+      - name: deploymentId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: '500123'
       responses:
         '200':
           description: Successful response
@@ -200,28 +343,55 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Deployment'
+              examples:
+                Getdeployment200Example:
+                  summary: Default getDeployment 200 response
+                  x-microcks-default: true
+                  value:
+                    deploymentId: '500123'
+                    deploymentConfig:
+                      scriptId: '500123'
+                      versionNumber: 10
+                      manifestFileName: example_value
+                      description: A sample description.
+                    updateTime: '2026-01-15T10:30:00Z'
       tags:
-        - Projects
+      - Projects
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     put:
       operationId: updateDeployment
-      summary: Google Apps Script Update deployment
+      summary: Google Apps Script Update Deployment
       description: Updates a deployment of an Apps Script project.
       parameters:
-        - name: scriptId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: deploymentId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: scriptId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: '500123'
+      - name: deploymentId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: '500123'
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdateDeploymentRequest'
+            examples:
+              UpdatedeploymentRequestExample:
+                summary: Default updateDeployment request
+                x-microcks-default: true
+                value:
+                  deploymentConfig:
+                    scriptId: '500123'
+                    versionNumber: 10
+                    manifestFileName: example_value
+                    description: A sample description.
       responses:
         '200':
           description: Successful response
@@ -229,47 +399,70 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Deployment'
+              examples:
+                Updatedeployment200Example:
+                  summary: Default updateDeployment 200 response
+                  x-microcks-default: true
+                  value:
+                    deploymentId: '500123'
+                    deploymentConfig:
+                      scriptId: '500123'
+                      versionNumber: 10
+                      manifestFileName: example_value
+                      description: A sample description.
+                    updateTime: '2026-01-15T10:30:00Z'
       tags:
-        - Projects
+      - Projects
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       operationId: deleteDeployment
-      summary: Google Apps Script Delete deployment
+      summary: Google Apps Script Delete Deployment
       description: Deletes a deployment of an Apps Script project.
       parameters:
-        - name: scriptId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: deploymentId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: scriptId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: '500123'
+      - name: deploymentId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: '500123'
       responses:
         '200':
           description: Successful response
       tags:
-        - Projects
+      - Projects
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /v1/projects/{scriptId}/versions:
     get:
       operationId: listVersions
-      summary: Google Apps Script List versions
+      summary: Google Apps Script List Versions
       description: List the versions of a script project.
       parameters:
-        - name: scriptId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: pageSize
-          in: query
-          schema:
-            type: integer
-        - name: pageToken
-          in: query
-          schema:
-            type: string
+      - name: scriptId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: '500123'
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+        example: 10
+      - name: pageToken
+        in: query
+        schema:
+          type: string
+        example: example_value
       responses:
         '200':
           description: Successful response
@@ -277,23 +470,47 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListVersionsResponse'
+              examples:
+                Listversions200Example:
+                  summary: Default listVersions 200 response
+                  x-microcks-default: true
+                  value:
+                    versions:
+                    - versionNumber: 10
+                      description: A sample description.
+                      createTime: '2026-01-15T10:30:00Z'
+                      scriptId: '500123'
+                    nextPageToken: example_value
       tags:
-        - Projects
+      - Projects
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
       operationId: createVersion
-      summary: Google Apps Script Create version
+      summary: Google Apps Script Create Version
       description: Creates a new immutable version using the current code.
       parameters:
-        - name: scriptId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: scriptId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: '500123'
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/Version'
+            examples:
+              CreateversionRequestExample:
+                summary: Default createVersion request
+                x-microcks-default: true
+                value:
+                  versionNumber: 10
+                  description: A sample description.
+                  createTime: '2026-01-15T10:30:00Z'
+                  scriptId: '500123'
       responses:
         '200':
           description: Successful response
@@ -301,24 +518,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Version'
+              examples:
+                Createversion200Example:
+                  summary: Default createVersion 200 response
+                  x-microcks-default: true
+                  value:
+                    versionNumber: 10
+                    description: A sample description.
+                    createTime: '2026-01-15T10:30:00Z'
+                    scriptId: '500123'
       tags:
-        - Projects
+      - Projects
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /v1/projects/{scriptId}/versions/{versionNumber}:
     get:
       operationId: getVersion
-      summary: Google Apps Script Get version
+      summary: Google Apps Script Get Version
       description: Gets a version of a script project.
       parameters:
-        - name: scriptId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: versionNumber
-          in: path
-          required: true
-          schema:
-            type: integer
+      - name: scriptId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: '500123'
+      - name: versionNumber
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 10
       responses:
         '200':
           description: Successful response
@@ -326,24 +557,46 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Version'
+              examples:
+                Getversion200Example:
+                  summary: Default getVersion 200 response
+                  x-microcks-default: true
+                  value:
+                    versionNumber: 10
+                    description: A sample description.
+                    createTime: '2026-01-15T10:30:00Z'
+                    scriptId: '500123'
       tags:
-        - Projects
+      - Projects
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /v1/scripts/{scriptId}:run:
     post:
       operationId: runScript
-      summary: Google Apps Script Run script
+      summary: Google Apps Script Run Script
       description: Runs a function in an Apps Script project.
       parameters:
-        - name: scriptId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: scriptId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: '500123'
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/ExecutionRequest'
+            examples:
+              RunscriptRequestExample:
+                summary: Default runScript request
+                x-microcks-default: true
+                value:
+                  function: example_value
+                  parameters: []
+                  sessionState: example_value
+                  devMode: true
       responses:
         '200':
           description: Successful response
@@ -351,22 +604,37 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Operation'
+              examples:
+                Runscript200Example:
+                  summary: Default runScript 200 response
+                  x-microcks-default: true
+                  value:
+                    done: true
+                    response: example_value
+                    error:
+                      code: 10
+                      message: example_value
       tags:
-        - Scripts
+      - Scripts
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /v1/processes:
     get:
       operationId: listProcesses
-      summary: Google Apps Script List processes
+      summary: Google Apps Script List Processes
       description: List information about processes made by or on behalf of a user.
       parameters:
-        - name: pageSize
-          in: query
-          schema:
-            type: integer
-        - name: pageToken
-          in: query
-          schema:
-            type: string
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+        example: 10
+      - name: pageToken
+        in: query
+        schema:
+          type: string
+        example: example_value
       responses:
         '200':
           description: Successful response
@@ -374,27 +642,46 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListProcessesResponse'
+              examples:
+                Listprocesses200Example:
+                  summary: Default listProcesses 200 response
+                  x-microcks-default: true
+                  value:
+                    processes:
+                    - projectName: example_value
+                      functionName: example_value
+                      processType: example_value
+                      processStatus: example_value
+                      startTime: '2026-01-15T10:30:00Z'
+                      duration: example_value
+                    nextPageToken: example_value
       tags:
-        - Processes
+      - Processes
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /v1/processes:listScriptProcesses:
     get:
       operationId: listScriptProcesses
-      summary: Google Apps Script List script processes
+      summary: Google Apps Script List Script Processes
       description: List information about a script's executed processes.
       parameters:
-        - name: pageSize
-          in: query
-          schema:
-            type: integer
-        - name: pageToken
-          in: query
-          schema:
-            type: string
-        - name: scriptId
-          in: query
-          required: true
-          schema:
-            type: string
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+        example: 10
+      - name: pageToken
+        in: query
+        schema:
+          type: string
+        example: example_value
+      - name: scriptId
+        in: query
+        required: true
+        schema:
+          type: string
+        example: '500123'
       responses:
         '200':
           description: Successful response
@@ -402,8 +689,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListProcessesResponse'
+              examples:
+                Listscriptprocesses200Example:
+                  summary: Default listScriptProcesses 200 response
+                  x-microcks-default: true
+                  value:
+                    processes:
+                    - projectName: example_value
+                      functionName: example_value
+                      processType: example_value
+                      processStatus: example_value
+                      startTime: '2026-01-15T10:30:00Z'
+                      duration: example_value
+                    nextPageToken: example_value
       tags:
-        - processes:listScriptProcesses
+      - processes:listScriptProcesses
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   schemas:
     Project:
@@ -411,16 +714,21 @@ components:
       properties:
         scriptId:
           type: string
+          example: '500123'
         title:
           type: string
+          example: Example Title
         parentId:
           type: string
+          example: '500123'
         createTime:
           type: string
           format: date-time
+          example: '2026-01-15T10:30:00Z'
         updateTime:
           type: string
           format: date-time
+          example: '2026-01-15T10:30:00Z'
         creator:
           type: object
           properties:
@@ -428,59 +736,75 @@ components:
               type: string
             name:
               type: string
+          example: example_value
     CreateProjectRequest:
       type: object
       properties:
         title:
           type: string
+          example: Example Title
         parentId:
           type: string
+          example: '500123'
     Content:
       type: object
       properties:
         scriptId:
           type: string
+          example: '500123'
         files:
           type: array
           items:
             $ref: '#/components/schemas/File'
+          example: []
     File:
       type: object
       properties:
         name:
           type: string
+          example: Example Title
         type:
           type: string
           enum: [ENUM_TYPE_UNSPECIFIED, SERVER_JS, HTML, JSON]
+          example: ENUM_TYPE_UNSPECIFIED
         source:
           type: string
+          example: example_value
         createTime:
           type: string
           format: date-time
+          example: '2026-01-15T10:30:00Z'
         updateTime:
           type: string
           format: date-time
+          example: '2026-01-15T10:30:00Z'
     Deployment:
       type: object
       properties:
         deploymentId:
           type: string
+          example: '500123'
         deploymentConfig:
           $ref: '#/components/schemas/DeploymentConfig'
         updateTime:
           type: string
           format: date-time
+          example: '2026-01-15T10:30:00Z'
     DeploymentConfig:
       type: object
       properties:
         scriptId:
           type: string
+          example: '500123'
         versionNumber:
           type: integer
+          example: 10
         manifestFileName:
           type: string
+          example: example_value
         description:
           type: string
+          example: A sample description.
     UpdateDeploymentRequest:
       type: object
       properties:
@@ -493,20 +817,26 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Deployment'
+          example: []
         nextPageToken:
           type: string
+          example: example_value
     Version:
       type: object
       properties:
         versionNumber:
           type: integer
+          example: 10
         description:
           type: string
+          example: A sample description.
         createTime:
           type: string
           format: date-time
+          example: '2026-01-15T10:30:00Z'
         scriptId:
           type: string
+          example: '500123'
     ListVersionsResponse:
       type: object
       properties:
@@ -514,8 +844,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Version'
+          example: []
         nextPageToken:
           type: string
+          example: example_value
     Metrics:
       type: object
       properties:
@@ -523,33 +855,42 @@ components:
           type: array
           items:
             type: object
+          example: []
         totalExecutions:
           type: array
           items:
             type: object
+          example: []
         failedExecutions:
           type: array
           items:
             type: object
+          example: []
     ExecutionRequest:
       type: object
       properties:
         function:
           type: string
+          example: example_value
         parameters:
           type: array
           items: {}
+          example: []
         sessionState:
           type: string
+          example: example_value
         devMode:
           type: boolean
+          example: true
     Operation:
       type: object
       properties:
         done:
           type: boolean
+          example: true
         response:
           type: object
+          example: example_value
         error:
           type: object
           properties:
@@ -557,22 +898,29 @@ components:
               type: integer
             message:
               type: string
+          example: example_value
     Process:
       type: object
       properties:
         projectName:
           type: string
+          example: example_value
         functionName:
           type: string
+          example: example_value
         processType:
           type: string
+          example: example_value
         processStatus:
           type: string
+          example: example_value
         startTime:
           type: string
           format: date-time
+          example: '2026-01-15T10:30:00Z'
         duration:
           type: string
+          example: example_value
     ListProcessesResponse:
       type: object
       properties:
@@ -580,10 +928,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Process'
+          example: []
         nextPageToken:
           type: string
+          example: example_value
 tags:
-  - name: Processes
-  - name: processes:listScriptProcesses
-  - name: Projects
-  - name: Scripts
+- name: Processes
+- name: processes:listScriptProcesses
+- name: Projects
+- name: Scripts

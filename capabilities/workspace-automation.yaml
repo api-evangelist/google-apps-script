@@ -1,0 +1,283 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Google Workspace Automation"
+  description: "Workflow capability for managing Google Apps Script projects, deployments, versions, and script execution. Enables developers and IT admins to automate Google Workspace workflows, manage script lifecycle, and monitor execution health."
+  tags:
+    - Google
+    - Apps Script
+    - Automation
+    - Google Workspace
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      GOOGLE_OAUTH_TOKEN: GOOGLE_OAUTH_TOKEN
+
+capability:
+  consumes:
+    - import: google-apps-script
+      location: ./shared/apps-script.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: workspace-automation-api
+      description: "Unified REST API for Google Workspace automation via Apps Script project management, deployment, and execution."
+      resources:
+        - path: /v1/projects
+          name: projects
+          description: "Script project management"
+          operations:
+            - method: POST
+              name: create-project
+              description: "Create a new script project"
+              call: "google-apps-script.create-project"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/projects/{scriptId}
+          name: project-detail
+          description: "Script project details and content"
+          operations:
+            - method: GET
+              name: get-project
+              description: "Get a script project's metadata"
+              call: "google-apps-script.get-project"
+              with:
+                scriptId: "rest.scriptId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/projects/{scriptId}/content
+          name: project-content
+          description: "Script project content"
+          operations:
+            - method: GET
+              name: get-project-content
+              description: "Get the code content of a script project"
+              call: "google-apps-script.get-project-content"
+              with:
+                scriptId: "rest.scriptId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: PUT
+              name: update-project-content
+              description: "Update the code content of a script project"
+              call: "google-apps-script.update-project-content"
+              with:
+                scriptId: "rest.scriptId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/projects/{scriptId}/metrics
+          name: project-metrics
+          description: "Script project metrics"
+          operations:
+            - method: GET
+              name: get-project-metrics
+              description: "Get execution metrics for a script project"
+              call: "google-apps-script.get-project-metrics"
+              with:
+                scriptId: "rest.scriptId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/deployments
+          name: deployments
+          description: "Deployment management"
+          operations:
+            - method: GET
+              name: list-deployments
+              description: "List deployments for a script project"
+              call: "google-apps-script.list-deployments"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-deployment
+              description: "Create a new deployment"
+              call: "google-apps-script.create-deployment"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/versions
+          name: versions
+          description: "Version management"
+          operations:
+            - method: GET
+              name: list-versions
+              description: "List versions of a script project"
+              call: "google-apps-script.list-versions"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-version
+              description: "Create a new immutable version"
+              call: "google-apps-script.create-version"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/processes
+          name: processes
+          description: "Process monitoring"
+          operations:
+            - method: GET
+              name: list-processes
+              description: "List execution processes"
+              call: "google-apps-script.list-processes"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: workspace-automation-mcp
+      transport: http
+      description: "MCP server for AI-assisted Google Workspace automation via Apps Script management and execution."
+      tools:
+        - name: create-project
+          description: "Create a new, empty script project"
+          hints:
+            readOnly: false
+          call: "google-apps-script.create-project"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-project
+          description: "Get a script project's metadata"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "google-apps-script.get-project"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-project-content
+          description: "Get the code content of a script project"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "google-apps-script.get-project-content"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: update-project-content
+          description: "Update the code content of a script project"
+          hints:
+            readOnly: false
+            idempotent: true
+          call: "google-apps-script.update-project-content"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-project-metrics
+          description: "Get execution metrics for a script project"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "google-apps-script.get-project-metrics"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-deployments
+          description: "List deployments of an Apps Script project"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "google-apps-script.list-deployments"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-deployment
+          description: "Create a deployment of an Apps Script project"
+          hints:
+            readOnly: false
+          call: "google-apps-script.create-deployment"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-deployment
+          description: "Get a specific deployment"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "google-apps-script.get-deployment"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: update-deployment
+          description: "Update a deployment"
+          hints:
+            readOnly: false
+            idempotent: true
+          call: "google-apps-script.update-deployment"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: delete-deployment
+          description: "Delete a deployment"
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: true
+          call: "google-apps-script.delete-deployment"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-versions
+          description: "List versions of a script project"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "google-apps-script.list-versions"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-version
+          description: "Create a new immutable version"
+          hints:
+            readOnly: false
+          call: "google-apps-script.create-version"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-version
+          description: "Get a specific version"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "google-apps-script.get-version"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: run-script
+          description: "Run a function in an Apps Script project"
+          hints:
+            readOnly: false
+          call: "google-apps-script.run-script"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-processes
+          description: "List execution processes"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "google-apps-script.list-processes"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-script-processes
+          description: "List a specific script's executed processes"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "google-apps-script.list-script-processes"
+          outputParameters:
+            - type: object
+              mapping: "$."

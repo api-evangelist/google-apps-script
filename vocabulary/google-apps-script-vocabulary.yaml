@@ -1,0 +1,11 @@
+name: google-apps-script API Vocabulary
+provider: google-apps-script
+created: '2026-04-18'
+modified: '2026-04-18'
+operations: 16
+schemas: 15
+tags:
+- Processes
+- Projects
+- Scripts
+- processes:listScriptProcesses

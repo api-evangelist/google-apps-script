@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "Project",
+  "type": "object",
+  "properties": {
+    "scriptId": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "parentId": {
+      "type": "string"
+    },
+    "createTime": {
+      "type": "string"
+    },
+    "updateTime": {
+      "type": "string"
+    },
+    "creator": {
+      "type": "object"
+    }
+  }
+}

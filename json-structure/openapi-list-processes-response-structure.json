@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "ListProcessesResponse",
+  "type": "object",
+  "properties": {
+    "processes": {
+      "type": "array"
+    },
+    "nextPageToken": {
+      "type": "string"
+    }
+  }
+}

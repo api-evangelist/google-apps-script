@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "DeploymentConfig",
+  "type": "object",
+  "properties": {
+    "scriptId": {
+      "type": "string"
+    },
+    "versionNumber": {
+      "type": "integer"
+    },
+    "manifestFileName": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    }
+  }
+}

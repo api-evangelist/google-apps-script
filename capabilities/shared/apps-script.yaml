@@ -1,0 +1,584 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Google Apps Script"
+  description: "The Apps Script API manages Google Apps Script projects, deployments, versions, and processes. It supports creating script projects, updating content, managing deployments, monitoring execution processes, and remotely running script functions."
+  tags:
+    - Google
+    - Apps Script
+    - Automation
+    - Google Workspace
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      GOOGLE_OAUTH_TOKEN: GOOGLE_OAUTH_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: google-apps-script
+      baseUri: https://script.googleapis.com
+      description: "Google Apps Script API for project management, deployments, versioning, and script execution."
+      authentication:
+        type: bearer
+        token: "{{GOOGLE_OAUTH_TOKEN}}"
+      resources:
+        - name: projects
+          path: /v1/projects
+          description: "Script project management"
+          operations:
+            - name: create-project
+              method: POST
+              description: "Creates a new, empty script project with no script files."
+              body:
+                type: json
+                data:
+                  title: "{{tools.title}}"
+                  parentId: "{{tools.parentId}}"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: get-project
+              method: GET
+              path: /{scriptId}
+              description: "Gets a script project's metadata."
+              inputParameters:
+                - name: scriptId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The script project ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: get-project-content
+              method: GET
+              path: /{scriptId}/content
+              description: "Gets the content of the script project including code source and metadata."
+              inputParameters:
+                - name: scriptId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The script project ID"
+                - name: versionNumber
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Version number to retrieve"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: update-project-content
+              method: PUT
+              path: /{scriptId}/content
+              description: "Updates the content of the specified script project."
+              inputParameters:
+                - name: scriptId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The script project ID"
+              body:
+                type: json
+                data:
+                  files: "{{tools.files}}"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: get-project-metrics
+              method: GET
+              path: /{scriptId}/metrics
+              description: "Get metrics data for scripts such as number of executions and active users."
+              inputParameters:
+                - name: scriptId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The script project ID"
+                - name: metricsGranularity
+                  in: query
+                  type: string
+                  required: false
+                  description: "Granularity of metrics (WEEKLY, DAILY)"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: deployments
+          path: /v1/projects/{scriptId}/deployments
+          description: "Deployment management"
+          operations:
+            - name: list-deployments
+              method: GET
+              description: "Lists the deployments of an Apps Script project."
+              inputParameters:
+                - name: scriptId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The script project ID"
+                - name: pageSize
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Maximum number of deployments per page"
+                - name: pageToken
+                  in: query
+                  type: string
+                  required: false
+                  description: "Page token for pagination"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-deployment
+              method: POST
+              description: "Creates a deployment of an Apps Script project."
+              inputParameters:
+                - name: scriptId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The script project ID"
+              body:
+                type: json
+                data:
+                  versionNumber: "{{tools.versionNumber}}"
+                  manifestFileName: "{{tools.manifestFileName}}"
+                  description: "{{tools.description}}"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: get-deployment
+              method: GET
+              path: /{deploymentId}
+              description: "Gets a deployment of an Apps Script project."
+              inputParameters:
+                - name: scriptId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The script project ID"
+                - name: deploymentId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The deployment ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: update-deployment
+              method: PUT
+              path: /{deploymentId}
+              description: "Updates a deployment of an Apps Script project."
+              inputParameters:
+                - name: scriptId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The script project ID"
+                - name: deploymentId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The deployment ID"
+              body:
+                type: json
+                data:
+                  deploymentConfig: "{{tools.deploymentConfig}}"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: delete-deployment
+              method: DELETE
+              path: /{deploymentId}
+              description: "Deletes a deployment of an Apps Script project."
+              inputParameters:
+                - name: scriptId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The script project ID"
+                - name: deploymentId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The deployment ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: versions
+          path: /v1/projects/{scriptId}/versions
+          description: "Version management"
+          operations:
+            - name: list-versions
+              method: GET
+              description: "List the versions of a script project."
+              inputParameters:
+                - name: scriptId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The script project ID"
+                - name: pageSize
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Maximum number of versions per page"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-version
+              method: POST
+              description: "Creates a new immutable version using the current code."
+              inputParameters:
+                - name: scriptId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The script project ID"
+              body:
+                type: json
+                data:
+                  description: "{{tools.description}}"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: get-version
+              method: GET
+              path: /{versionNumber}
+              description: "Gets a version of a script project."
+              inputParameters:
+                - name: scriptId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The script project ID"
+                - name: versionNumber
+                  in: path
+                  type: integer
+                  required: true
+                  description: "The version number"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: scripts
+          path: /v1/scripts
+          description: "Script execution"
+          operations:
+            - name: run-script
+              method: POST
+              path: /{scriptId}:run
+              description: "Runs a function in an Apps Script project."
+              inputParameters:
+                - name: scriptId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The script project ID"
+              body:
+                type: json
+                data:
+                  function: "{{tools.function}}"
+                  parameters: "{{tools.parameters}}"
+                  devMode: "{{tools.devMode}}"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: processes
+          path: /v1/processes
+          description: "Process monitoring"
+          operations:
+            - name: list-processes
+              method: GET
+              description: "List information about processes made by or on behalf of a user."
+              inputParameters:
+                - name: pageSize
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Maximum number of processes per page"
+                - name: pageToken
+                  in: query
+                  type: string
+                  required: false
+                  description: "Page token for pagination"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: list-script-processes
+              method: GET
+              path: :listScriptProcesses
+              description: "List information about a script's executed processes."
+              inputParameters:
+                - name: scriptId
+                  in: query
+                  type: string
+                  required: true
+                  description: "The script project ID"
+                - name: pageSize
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Maximum number of processes per page"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: google-apps-script-rest
+      resources:
+        - path: /v1/projects
+          name: projects
+          description: "Script project management"
+          operations:
+            - method: POST
+              name: create-project
+              description: "Create a new script project"
+              call: "google-apps-script.create-project"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/projects/{scriptId}
+          name: project-detail
+          description: "Script project details"
+          operations:
+            - method: GET
+              name: get-project
+              description: "Get a script project's metadata"
+              call: "google-apps-script.get-project"
+              with:
+                scriptId: "rest.scriptId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/deployments
+          name: deployments
+          description: "Deployment management"
+          operations:
+            - method: GET
+              name: list-deployments
+              description: "List deployments for a script project"
+              call: "google-apps-script.list-deployments"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-deployment
+              description: "Create a new deployment"
+              call: "google-apps-script.create-deployment"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/versions
+          name: versions
+          description: "Version management"
+          operations:
+            - method: GET
+              name: list-versions
+              description: "List versions of a script project"
+              call: "google-apps-script.list-versions"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-version
+              description: "Create a new immutable version"
+              call: "google-apps-script.create-version"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/processes
+          name: processes
+          description: "Process monitoring"
+          operations:
+            - method: GET
+              name: list-processes
+              description: "List processes"
+              call: "google-apps-script.list-processes"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: google-apps-script-mcp
+      transport: http
+      tools:
+        - name: create-project
+          description: "Create a new, empty script project"
+          hints:
+            readOnly: false
+          call: "google-apps-script.create-project"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-project
+          description: "Get a script project's metadata"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "google-apps-script.get-project"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-project-content
+          description: "Get the content of a script project"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "google-apps-script.get-project-content"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: update-project-content
+          description: "Update the content of a script project"
+          hints:
+            readOnly: false
+            idempotent: true
+          call: "google-apps-script.update-project-content"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-project-metrics
+          description: "Get metrics data for a script project"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "google-apps-script.get-project-metrics"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-deployments
+          description: "List deployments of an Apps Script project"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "google-apps-script.list-deployments"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-deployment
+          description: "Create a deployment of an Apps Script project"
+          hints:
+            readOnly: false
+          call: "google-apps-script.create-deployment"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-deployment
+          description: "Get a specific deployment"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "google-apps-script.get-deployment"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: update-deployment
+          description: "Update a deployment"
+          hints:
+            readOnly: false
+            idempotent: true
+          call: "google-apps-script.update-deployment"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: delete-deployment
+          description: "Delete a deployment"
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: true
+          call: "google-apps-script.delete-deployment"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-versions
+          description: "List versions of a script project"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "google-apps-script.list-versions"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-version
+          description: "Create a new immutable version"
+          hints:
+            readOnly: false
+          call: "google-apps-script.create-version"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-version
+          description: "Get a specific version"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "google-apps-script.get-version"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: run-script
+          description: "Run a function in an Apps Script project"
+          hints:
+            readOnly: false
+          call: "google-apps-script.run-script"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-processes
+          description: "List processes made by or on behalf of a user"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "google-apps-script.list-processes"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-script-processes
+          description: "List a script's executed processes"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "google-apps-script.list-script-processes"
+          outputParameters:
+            - type: object
+              mapping: "$."
