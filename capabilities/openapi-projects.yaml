@@ -1,0 +1,616 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Google Apps Script API — Projects
+  description: 'Google Apps Script API — Projects. 13 operations. Lead operation: Google Apps Script Create Project. Self-contained
+    Naftiko capability covering one Google Apps Script business surface.'
+  tags:
+  - Google Apps Script
+  - Projects
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    GOOGLE_APPS_SCRIPT_API_KEY: GOOGLE_APPS_SCRIPT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: openapi-projects
+    baseUri: https://script.googleapis.com
+    description: Google Apps Script API — Projects business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-projects
+      path: /v1/projects
+      operations:
+      - name: createproject
+        method: POST
+        description: Google Apps Script Create Project
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: v1-projects-scriptId
+      path: /v1/projects/{scriptId}
+      operations:
+      - name: getproject
+        method: GET
+        description: Google Apps Script Get Project
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scriptId
+          in: path
+          type: string
+          required: true
+    - name: v1-projects-scriptId-content
+      path: /v1/projects/{scriptId}/content
+      operations:
+      - name: getprojectcontent
+        method: GET
+        description: Google Apps Script Get Project Content
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scriptId
+          in: path
+          type: string
+          required: true
+        - name: versionNumber
+          in: query
+          type: integer
+      - name: updateprojectcontent
+        method: PUT
+        description: Google Apps Script Update Project Content
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scriptId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: v1-projects-scriptId-deployments
+      path: /v1/projects/{scriptId}/deployments
+      operations:
+      - name: listdeployments
+        method: GET
+        description: Google Apps Script List Deployments
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scriptId
+          in: path
+          type: string
+          required: true
+        - name: pageSize
+          in: query
+          type: integer
+        - name: pageToken
+          in: query
+          type: string
+      - name: createdeployment
+        method: POST
+        description: Google Apps Script Create Deployment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scriptId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: v1-projects-scriptId-deployments-deploymentId
+      path: /v1/projects/{scriptId}/deployments/{deploymentId}
+      operations:
+      - name: getdeployment
+        method: GET
+        description: Google Apps Script Get Deployment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scriptId
+          in: path
+          type: string
+          required: true
+        - name: deploymentId
+          in: path
+          type: string
+          required: true
+      - name: updatedeployment
+        method: PUT
+        description: Google Apps Script Update Deployment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scriptId
+          in: path
+          type: string
+          required: true
+        - name: deploymentId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deletedeployment
+        method: DELETE
+        description: Google Apps Script Delete Deployment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scriptId
+          in: path
+          type: string
+          required: true
+        - name: deploymentId
+          in: path
+          type: string
+          required: true
+    - name: v1-projects-scriptId-metrics
+      path: /v1/projects/{scriptId}/metrics
+      operations:
+      - name: getprojectmetrics
+        method: GET
+        description: Google Apps Script Get Project Metrics
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scriptId
+          in: path
+          type: string
+          required: true
+        - name: metricsGranularity
+          in: query
+          type: string
+    - name: v1-projects-scriptId-versions
+      path: /v1/projects/{scriptId}/versions
+      operations:
+      - name: listversions
+        method: GET
+        description: Google Apps Script List Versions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scriptId
+          in: path
+          type: string
+          required: true
+        - name: pageSize
+          in: query
+          type: integer
+        - name: pageToken
+          in: query
+          type: string
+      - name: createversion
+        method: POST
+        description: Google Apps Script Create Version
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scriptId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: v1-projects-scriptId-versions-versionNumber
+      path: /v1/projects/{scriptId}/versions/{versionNumber}
+      operations:
+      - name: getversion
+        method: GET
+        description: Google Apps Script Get Version
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scriptId
+          in: path
+          type: string
+          required: true
+        - name: versionNumber
+          in: path
+          type: integer
+          required: true
+  exposes:
+  - type: rest
+    namespace: openapi-projects-rest
+    port: 8080
+    description: REST adapter for Google Apps Script API — Projects. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v1/projects
+      name: v1-projects
+      description: REST surface for v1-projects.
+      operations:
+      - method: POST
+        name: createproject
+        description: Google Apps Script Create Project
+        call: openapi-projects.createproject
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/projects/{scriptid}
+      name: v1-projects-scriptid
+      description: REST surface for v1-projects-scriptId.
+      operations:
+      - method: GET
+        name: getproject
+        description: Google Apps Script Get Project
+        call: openapi-projects.getproject
+        with:
+          scriptId: rest.scriptId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/projects/{scriptid}/content
+      name: v1-projects-scriptid-content
+      description: REST surface for v1-projects-scriptId-content.
+      operations:
+      - method: GET
+        name: getprojectcontent
+        description: Google Apps Script Get Project Content
+        call: openapi-projects.getprojectcontent
+        with:
+          scriptId: rest.scriptId
+          versionNumber: rest.versionNumber
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateprojectcontent
+        description: Google Apps Script Update Project Content
+        call: openapi-projects.updateprojectcontent
+        with:
+          scriptId: rest.scriptId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/projects/{scriptid}/deployments
+      name: v1-projects-scriptid-deployments
+      description: REST surface for v1-projects-scriptId-deployments.
+      operations:
+      - method: GET
+        name: listdeployments
+        description: Google Apps Script List Deployments
+        call: openapi-projects.listdeployments
+        with:
+          scriptId: rest.scriptId
+          pageSize: rest.pageSize
+          pageToken: rest.pageToken
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createdeployment
+        description: Google Apps Script Create Deployment
+        call: openapi-projects.createdeployment
+        with:
+          scriptId: rest.scriptId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/projects/{scriptid}/deployments/{deploymentid}
+      name: v1-projects-scriptid-deployments-deploymentid
+      description: REST surface for v1-projects-scriptId-deployments-deploymentId.
+      operations:
+      - method: GET
+        name: getdeployment
+        description: Google Apps Script Get Deployment
+        call: openapi-projects.getdeployment
+        with:
+          scriptId: rest.scriptId
+          deploymentId: rest.deploymentId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatedeployment
+        description: Google Apps Script Update Deployment
+        call: openapi-projects.updatedeployment
+        with:
+          scriptId: rest.scriptId
+          deploymentId: rest.deploymentId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletedeployment
+        description: Google Apps Script Delete Deployment
+        call: openapi-projects.deletedeployment
+        with:
+          scriptId: rest.scriptId
+          deploymentId: rest.deploymentId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/projects/{scriptid}/metrics
+      name: v1-projects-scriptid-metrics
+      description: REST surface for v1-projects-scriptId-metrics.
+      operations:
+      - method: GET
+        name: getprojectmetrics
+        description: Google Apps Script Get Project Metrics
+        call: openapi-projects.getprojectmetrics
+        with:
+          scriptId: rest.scriptId
+          metricsGranularity: rest.metricsGranularity
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/projects/{scriptid}/versions
+      name: v1-projects-scriptid-versions
+      description: REST surface for v1-projects-scriptId-versions.
+      operations:
+      - method: GET
+        name: listversions
+        description: Google Apps Script List Versions
+        call: openapi-projects.listversions
+        with:
+          scriptId: rest.scriptId
+          pageSize: rest.pageSize
+          pageToken: rest.pageToken
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createversion
+        description: Google Apps Script Create Version
+        call: openapi-projects.createversion
+        with:
+          scriptId: rest.scriptId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/projects/{scriptid}/versions/{versionnumber}
+      name: v1-projects-scriptid-versions-versionnumber
+      description: REST surface for v1-projects-scriptId-versions-versionNumber.
+      operations:
+      - method: GET
+        name: getversion
+        description: Google Apps Script Get Version
+        call: openapi-projects.getversion
+        with:
+          scriptId: rest.scriptId
+          versionNumber: rest.versionNumber
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: openapi-projects-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Google Apps Script API — Projects. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: google-apps-script-create-project
+      description: Google Apps Script Create Project
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: openapi-projects.createproject
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: google-apps-script-get-project
+      description: Google Apps Script Get Project
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi-projects.getproject
+      with:
+        scriptId: tools.scriptId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: google-apps-script-get-project-2
+      description: Google Apps Script Get Project Content
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi-projects.getprojectcontent
+      with:
+        scriptId: tools.scriptId
+        versionNumber: tools.versionNumber
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: google-apps-script-update-project
+      description: Google Apps Script Update Project Content
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: openapi-projects.updateprojectcontent
+      with:
+        scriptId: tools.scriptId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: google-apps-script-list-deployments
+      description: Google Apps Script List Deployments
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi-projects.listdeployments
+      with:
+        scriptId: tools.scriptId
+        pageSize: tools.pageSize
+        pageToken: tools.pageToken
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: google-apps-script-create-deployment
+      description: Google Apps Script Create Deployment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: openapi-projects.createdeployment
+      with:
+        scriptId: tools.scriptId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: google-apps-script-get-deployment
+      description: Google Apps Script Get Deployment
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi-projects.getdeployment
+      with:
+        scriptId: tools.scriptId
+        deploymentId: tools.deploymentId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: google-apps-script-update-deployment
+      description: Google Apps Script Update Deployment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: openapi-projects.updatedeployment
+      with:
+        scriptId: tools.scriptId
+        deploymentId: tools.deploymentId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: google-apps-script-delete-deployment
+      description: Google Apps Script Delete Deployment
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: openapi-projects.deletedeployment
+      with:
+        scriptId: tools.scriptId
+        deploymentId: tools.deploymentId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: google-apps-script-get-project-3
+      description: Google Apps Script Get Project Metrics
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi-projects.getprojectmetrics
+      with:
+        scriptId: tools.scriptId
+        metricsGranularity: tools.metricsGranularity
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: google-apps-script-list-versions
+      description: Google Apps Script List Versions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi-projects.listversions
+      with:
+        scriptId: tools.scriptId
+        pageSize: tools.pageSize
+        pageToken: tools.pageToken
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: google-apps-script-create-version
+      description: Google Apps Script Create Version
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: openapi-projects.createversion
+      with:
+        scriptId: tools.scriptId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: google-apps-script-get-version
+      description: Google Apps Script Get Version
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi-projects.getversion
+      with:
+        scriptId: tools.scriptId
+        versionNumber: tools.versionNumber
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,86 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Google Apps Script API — processes:listScriptProcesses
+  description: 'Google Apps Script API — processes:listScriptProcesses. 1 operations. Lead operation: Google Apps Script List
+    Script Processes. Self-contained Naftiko capability covering one Google Apps Script business surface.'
+  tags:
+  - Google Apps Script
+  - processes:listScriptProcesses
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    GOOGLE_APPS_SCRIPT_API_KEY: GOOGLE_APPS_SCRIPT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: openapi-processes-listscriptprocesses
+    baseUri: https://script.googleapis.com
+    description: Google Apps Script API — processes:listScriptProcesses business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-processes:listScriptProcesses
+      path: /v1/processes:listScriptProcesses
+      operations:
+      - name: listscriptprocesses
+        method: GET
+        description: Google Apps Script List Script Processes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: pageSize
+          in: query
+          type: integer
+        - name: pageToken
+          in: query
+          type: string
+        - name: scriptId
+          in: query
+          type: string
+          required: true
+  exposes:
+  - type: rest
+    namespace: openapi-processes-listscriptprocesses-rest
+    port: 8080
+    description: REST adapter for Google Apps Script API — processes:listScriptProcesses. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/v1/processes-listscriptprocesses
+      name: v1-processes-listscriptprocesses
+      description: REST surface for v1-processes:listScriptProcesses.
+      operations:
+      - method: GET
+        name: listscriptprocesses
+        description: Google Apps Script List Script Processes
+        call: openapi-processes-listscriptprocesses.listscriptprocesses
+        with:
+          pageSize: rest.pageSize
+          pageToken: rest.pageToken
+          scriptId: rest.scriptId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: openapi-processes-listscriptprocesses-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Google Apps Script API — processes:listScriptProcesses. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: google-apps-script-list-script
+      description: Google Apps Script List Script Processes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openapi-processes-listscriptprocesses.listscriptprocesses
+      with:
+        pageSize: tools.pageSize
+        pageToken: tools.pageToken
+        scriptId: tools.scriptId
+      outputParameters:
+      - type: object
+        mapping: $.
