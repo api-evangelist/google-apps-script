@@ -48,7 +48,7 @@ common:
     url: json-ld/json-ld.jsonld
   - type: GitHubOrganization
     url: https://github.com/googleworkspace
-  - type: SDK
+  - type: SDKs
     url: https://developers.google.com/apps-script/api/quickstart/nodejs
   - type: CLI
     url: https://developers.google.com/apps-script/guides/clasp
