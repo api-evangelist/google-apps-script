@@ -40,6 +40,10 @@ apis:
       - Projects
       - Scripting
 common:
+  - type: VulnerabilityDisclosure
+    url: security/google-apps-script-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/google-apps-script-domain-security.yml
   - type: GettingStarted
     url: https://developers.google.com/apps-script/api/concepts
   - type: Pricing
