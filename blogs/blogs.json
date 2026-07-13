@@ -2,11 +2,13 @@
   "repo": "google-apps-script",
   "feeds": [
     {
-      "source": "https://developers.google.com/apps-script/updates",
+      "source": "https://developers.google.com/apps-script/support",
+      "feed_url": "https://developers.google.com/apps-script/support",
+      "title": "",
       "saved": 0,
-      "error": "HTTP 404 Not Found"
+      "method": "none"
     }
   ],
   "post_count": 25,
-  "fetched": "2026-06-27T12:45:16Z"
+  "fetched": "2026-07-11T11:50:51Z"
 }
