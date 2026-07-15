@@ -40,6 +40,8 @@ apis:
       - Projects
       - Scripting
 common:
+  - type: AgenticAccess
+    url: agentic-access/google-apps-script-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/google-apps-script-vulnerability-disclosure.yml
   - type: DomainSecurity
