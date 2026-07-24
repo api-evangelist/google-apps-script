@@ -1,0 +1,96 @@
+openapi: 3.1.0
+info:
+  title: Google Apps Script Processes Scripts API
+  description: The Apps Script API manages Google Apps Script projects, deployments, versions, and processes. It supports creating script projects, updating content, managing deployments, monitoring execution processes, and remotely running script functions.
+  version: v1
+  contact:
+    name: Google
+    url: https://developers.google.com/apps-script/api/concepts
+servers:
+- url: https://script.googleapis.com
+tags:
+- name: Scripts
+paths:
+  /v1/scripts/{scriptId}:run:
+    post:
+      operationId: runScript
+      summary: Google Apps Script Run Script
+      description: Runs a function in an Apps Script project.
+      parameters:
+      - name: scriptId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: '500123'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExecutionRequest'
+            examples:
+              RunscriptRequestExample:
+                summary: Default runScript request
+                x-microcks-default: true
+                value:
+                  function: example_value
+                  parameters: []
+                  sessionState: example_value
+                  devMode: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Operation'
+              examples:
+                Runscript200Example:
+                  summary: Default runScript 200 response
+                  x-microcks-default: true
+                  value:
+                    done: true
+                    response: example_value
+                    error:
+                      code: 10
+                      message: example_value
+      tags:
+      - Scripts
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ExecutionRequest:
+      type: object
+      properties:
+        function:
+          type: string
+          example: example_value
+        parameters:
+          type: array
+          items: {}
+          example: []
+        sessionState:
+          type: string
+          example: example_value
+        devMode:
+          type: boolean
+          example: true
+    Operation:
+      type: object
+      properties:
+        done:
+          type: boolean
+          example: true
+        response:
+          type: object
+          example: example_value
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+            message:
+              type: string
+          example: example_value

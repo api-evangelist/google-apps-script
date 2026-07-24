@@ -1,17 +1,15 @@
 openapi: 3.1.0
 info:
-  title: Google Apps Script API
-  description: >-
-    The Apps Script API manages Google Apps Script projects, deployments,
-    versions, and processes. It supports creating script projects, updating
-    content, managing deployments, monitoring execution processes, and remotely
-    running script functions.
+  title: Google Apps Script Processes Projects API
+  description: The Apps Script API manages Google Apps Script projects, deployments, versions, and processes. It supports creating script projects, updating content, managing deployments, monitoring execution processes, and remotely running script functions.
   version: v1
   contact:
     name: Google
     url: https://developers.google.com/apps-script/api/concepts
 servers:
 - url: https://script.googleapis.com
+tags:
+- name: Projects
 paths:
   /v1/projects:
     post:
@@ -201,7 +199,10 @@ paths:
         in: query
         schema:
           type: string
-          enum: [UNSPECIFIED_GRANULARITY, WEEKLY, DAILY]
+          enum:
+          - UNSPECIFIED_GRANULARITY
+          - WEEKLY
+          - DAILY
         example: UNSPECIFIED_GRANULARITY
       responses:
         '200':
@@ -571,144 +572,101 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
-  /v1/scripts/{scriptId}:run:
-    post:
-      operationId: runScript
-      summary: Google Apps Script Run Script
-      description: Runs a function in an Apps Script project.
-      parameters:
-      - name: scriptId
-        in: path
-        required: true
-        schema:
-          type: string
-        example: '500123'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ExecutionRequest'
-            examples:
-              RunscriptRequestExample:
-                summary: Default runScript request
-                x-microcks-default: true
-                value:
-                  function: example_value
-                  parameters: []
-                  sessionState: example_value
-                  devMode: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Operation'
-              examples:
-                Runscript200Example:
-                  summary: Default runScript 200 response
-                  x-microcks-default: true
-                  value:
-                    done: true
-                    response: example_value
-                    error:
-                      code: 10
-                      message: example_value
-      tags:
-      - Scripts
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
-  /v1/processes:
-    get:
-      operationId: listProcesses
-      summary: Google Apps Script List Processes
-      description: List information about processes made by or on behalf of a user.
-      parameters:
-      - name: pageSize
-        in: query
-        schema:
-          type: integer
-        example: 10
-      - name: pageToken
-        in: query
-        schema:
-          type: string
-        example: example_value
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ListProcessesResponse'
-              examples:
-                Listprocesses200Example:
-                  summary: Default listProcesses 200 response
-                  x-microcks-default: true
-                  value:
-                    processes:
-                    - projectName: example_value
-                      functionName: example_value
-                      processType: example_value
-                      processStatus: example_value
-                      startTime: '2026-01-15T10:30:00Z'
-                      duration: example_value
-                    nextPageToken: example_value
-      tags:
-      - Processes
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
-  /v1/processes:listScriptProcesses:
-    get:
-      operationId: listScriptProcesses
-      summary: Google Apps Script List Script Processes
-      description: List information about a script's executed processes.
-      parameters:
-      - name: pageSize
-        in: query
-        schema:
-          type: integer
-        example: 10
-      - name: pageToken
-        in: query
-        schema:
-          type: string
-        example: example_value
-      - name: scriptId
-        in: query
-        required: true
-        schema:
-          type: string
-        example: '500123'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ListProcessesResponse'
-              examples:
-                Listscriptprocesses200Example:
-                  summary: Default listScriptProcesses 200 response
-                  x-microcks-default: true
-                  value:
-                    processes:
-                    - projectName: example_value
-                      functionName: example_value
-                      processType: example_value
-                      processStatus: example_value
-                      startTime: '2026-01-15T10:30:00Z'
-                      duration: example_value
-                    nextPageToken: example_value
-      tags:
-      - processes:listScriptProcesses
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
 components:
   schemas:
+    Version:
+      type: object
+      properties:
+        versionNumber:
+          type: integer
+          example: 10
+        description:
+          type: string
+          example: A sample description.
+        createTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        scriptId:
+          type: string
+          example: '500123'
+    UpdateDeploymentRequest:
+      type: object
+      properties:
+        deploymentConfig:
+          $ref: '#/components/schemas/DeploymentConfig'
+    Content:
+      type: object
+      properties:
+        scriptId:
+          type: string
+          example: '500123'
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/File'
+          example: []
+    File:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Example Title
+        type:
+          type: string
+          enum:
+          - ENUM_TYPE_UNSPECIFIED
+          - SERVER_JS
+          - HTML
+          - JSON
+          example: ENUM_TYPE_UNSPECIFIED
+        source:
+          type: string
+          example: example_value
+        createTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        updateTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+    DeploymentConfig:
+      type: object
+      properties:
+        scriptId:
+          type: string
+          example: '500123'
+        versionNumber:
+          type: integer
+          example: 10
+        manifestFileName:
+          type: string
+          example: example_value
+        description:
+          type: string
+          example: A sample description.
+    CreateProjectRequest:
+      type: object
+      properties:
+        title:
+          type: string
+          example: Example Title
+        parentId:
+          type: string
+          example: '500123'
+    Deployment:
+      type: object
+      properties:
+        deploymentId:
+          type: string
+          example: '500123'
+        deploymentConfig:
+          $ref: '#/components/schemas/DeploymentConfig'
+        updateTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
     Project:
       type: object
       properties:
@@ -737,106 +695,6 @@ components:
             name:
               type: string
           example: example_value
-    CreateProjectRequest:
-      type: object
-      properties:
-        title:
-          type: string
-          example: Example Title
-        parentId:
-          type: string
-          example: '500123'
-    Content:
-      type: object
-      properties:
-        scriptId:
-          type: string
-          example: '500123'
-        files:
-          type: array
-          items:
-            $ref: '#/components/schemas/File'
-          example: []
-    File:
-      type: object
-      properties:
-        name:
-          type: string
-          example: Example Title
-        type:
-          type: string
-          enum: [ENUM_TYPE_UNSPECIFIED, SERVER_JS, HTML, JSON]
-          example: ENUM_TYPE_UNSPECIFIED
-        source:
-          type: string
-          example: example_value
-        createTime:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
-        updateTime:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
-    Deployment:
-      type: object
-      properties:
-        deploymentId:
-          type: string
-          example: '500123'
-        deploymentConfig:
-          $ref: '#/components/schemas/DeploymentConfig'
-        updateTime:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
-    DeploymentConfig:
-      type: object
-      properties:
-        scriptId:
-          type: string
-          example: '500123'
-        versionNumber:
-          type: integer
-          example: 10
-        manifestFileName:
-          type: string
-          example: example_value
-        description:
-          type: string
-          example: A sample description.
-    UpdateDeploymentRequest:
-      type: object
-      properties:
-        deploymentConfig:
-          $ref: '#/components/schemas/DeploymentConfig'
-    ListDeploymentsResponse:
-      type: object
-      properties:
-        deployments:
-          type: array
-          items:
-            $ref: '#/components/schemas/Deployment'
-          example: []
-        nextPageToken:
-          type: string
-          example: example_value
-    Version:
-      type: object
-      properties:
-        versionNumber:
-          type: integer
-          example: 10
-        description:
-          type: string
-          example: A sample description.
-        createTime:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
-        scriptId:
-          type: string
-          example: '500123'
     ListVersionsResponse:
       type: object
       properties:
@@ -844,6 +702,17 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Version'
+          example: []
+        nextPageToken:
+          type: string
+          example: example_value
+    ListDeploymentsResponse:
+      type: object
+      properties:
+        deployments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Deployment'
           example: []
         nextPageToken:
           type: string
@@ -866,74 +735,3 @@ components:
           items:
             type: object
           example: []
-    ExecutionRequest:
-      type: object
-      properties:
-        function:
-          type: string
-          example: example_value
-        parameters:
-          type: array
-          items: {}
-          example: []
-        sessionState:
-          type: string
-          example: example_value
-        devMode:
-          type: boolean
-          example: true
-    Operation:
-      type: object
-      properties:
-        done:
-          type: boolean
-          example: true
-        response:
-          type: object
-          example: example_value
-        error:
-          type: object
-          properties:
-            code:
-              type: integer
-            message:
-              type: string
-          example: example_value
-    Process:
-      type: object
-      properties:
-        projectName:
-          type: string
-          example: example_value
-        functionName:
-          type: string
-          example: example_value
-        processType:
-          type: string
-          example: example_value
-        processStatus:
-          type: string
-          example: example_value
-        startTime:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
-        duration:
-          type: string
-          example: example_value
-    ListProcessesResponse:
-      type: object
-      properties:
-        processes:
-          type: array
-          items:
-            $ref: '#/components/schemas/Process'
-          example: []
-        nextPageToken:
-          type: string
-          example: example_value
-tags:
-- name: Processes
-- name: processes:listScriptProcesses
-- name: Projects
-- name: Scripts

@@ -1,0 +1,89 @@
+openapi: 3.1.0
+info:
+  title: Google Apps Script Processes API
+  description: The Apps Script API manages Google Apps Script projects, deployments, versions, and processes. It supports creating script projects, updating content, managing deployments, monitoring execution processes, and remotely running script functions.
+  version: v1
+  contact:
+    name: Google
+    url: https://developers.google.com/apps-script/api/concepts
+servers:
+- url: https://script.googleapis.com
+tags:
+- name: Processes
+paths:
+  /v1/processes:
+    get:
+      operationId: listProcesses
+      summary: Google Apps Script List Processes
+      description: List information about processes made by or on behalf of a user.
+      parameters:
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+        example: 10
+      - name: pageToken
+        in: query
+        schema:
+          type: string
+        example: example_value
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListProcessesResponse'
+              examples:
+                Listprocesses200Example:
+                  summary: Default listProcesses 200 response
+                  x-microcks-default: true
+                  value:
+                    processes:
+                    - projectName: example_value
+                      functionName: example_value
+                      processType: example_value
+                      processStatus: example_value
+                      startTime: '2026-01-15T10:30:00Z'
+                      duration: example_value
+                    nextPageToken: example_value
+      tags:
+      - Processes
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Process:
+      type: object
+      properties:
+        projectName:
+          type: string
+          example: example_value
+        functionName:
+          type: string
+          example: example_value
+        processType:
+          type: string
+          example: example_value
+        processStatus:
+          type: string
+          example: example_value
+        startTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        duration:
+          type: string
+          example: example_value
+    ListProcessesResponse:
+      type: object
+      properties:
+        processes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Process'
+          example: []
+        nextPageToken:
+          type: string
+          example: example_value
