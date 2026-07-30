@@ -6,7 +6,19 @@ description: >-
   processes, and remotely executing Apps Script functions. The API is essential for automating Apps Script project
   management and integrating script execution into external applications.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Freemium
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/google-apps-script.png
 url: https://raw.githubusercontent.com/api-evangelist/google-apps-script/refs/heads/main/apis.yml
 created: '2026-03-13'
 modified: '2026-05-19'
@@ -19,26 +31,63 @@ tags:
   - Google Workspace
   - Scripting
 apis:
-  - aid: google-apps-script:google-apps-script
-    name: Google Apps Script API
-    description: >-
-      The Apps Script API manages Google Apps Script projects, deployments, versions, and processes. It supports
-      creating script projects, updating content, managing deployments, monitoring execution processes, and remotely
-      running script functions.
-    humanURL: https://developers.google.com/apps-script/api/concepts
-    baseURL: https://script.googleapis.com
-    properties:
-      - type: OpenAPI
-        url: openapi/openapi.yml
-      - type: JSONSchema
-        url: json-schema/json-schema.yml
-      - type: JSONLD
-        url: json-ld/json-ld.jsonld
-    tags:
-      - Automation
-      - Deployments
-      - Projects
-      - Scripting
+- aid: google-apps-script:google-apps-script-processes-api
+  name: Google Apps Script Processes API
+  description: The Processes API from Google Apps Script — 1 operation(s) for processes.
+  humanURL: https://developers.google.com/apps-script/api/concepts
+  baseURL: https://script.googleapis.com
+  tags:
+  - Processes
+  properties:
+  - type: OpenAPI
+    url: openapi/google-apps-script-processes-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/json-schema.yml
+  - type: JSONLD
+    url: json-ld/json-ld.jsonld
+- aid: google-apps-script:google-apps-script-processes-listscriptprocesses-api
+  name: Google Apps Script processes:listScriptProcesses API
+  description: >-
+    The processes:listScriptProcesses API from Google Apps Script — 1 operation(s) for processes:listscriptprocesses.
+  humanURL: https://developers.google.com/apps-script/api/concepts
+  baseURL: https://script.googleapis.com
+  tags:
+  - processes:listScriptProcesses
+  properties:
+  - type: OpenAPI
+    url: openapi/google-apps-script-processes-listscriptprocesses-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/json-schema.yml
+  - type: JSONLD
+    url: json-ld/json-ld.jsonld
+- aid: google-apps-script:google-apps-script-projects-api
+  name: Google Apps Script Projects API
+  description: The Projects API from Google Apps Script — 8 operation(s) for projects.
+  humanURL: https://developers.google.com/apps-script/api/concepts
+  baseURL: https://script.googleapis.com
+  tags:
+  - Projects
+  properties:
+  - type: OpenAPI
+    url: openapi/google-apps-script-projects-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/json-schema.yml
+  - type: JSONLD
+    url: json-ld/json-ld.jsonld
+- aid: google-apps-script:google-apps-script-scripts-api
+  name: Google Apps Script Scripts API
+  description: The Scripts API from Google Apps Script — 1 operation(s) for scripts.
+  humanURL: https://developers.google.com/apps-script/api/concepts
+  baseURL: https://script.googleapis.com
+  tags:
+  - Scripts
+  properties:
+  - type: OpenAPI
+    url: openapi/google-apps-script-scripts-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/json-schema.yml
+  - type: JSONLD
+    url: json-ld/json-ld.jsonld
 common:
   - type: AgenticAccess
     url: agentic-access/google-apps-script-agentic-access.yml
