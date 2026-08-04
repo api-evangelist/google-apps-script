@@ -1,0 +1,20 @@
+{
+  "provider": "google-apps-script",
+  "sources": [
+    "google-apps-script-processes-api-openapi.yml",
+    "google-apps-script-processes-listscriptprocesses-api-openapi.yml",
+    "google-apps-script-projects-api-openapi.yml",
+    "google-apps-script-scripts-api-openapi.yml"
+  ],
+  "outputs": [
+    "google-apps-script-processes-api-openapi.yml",
+    "google-apps-script-processes-listscriptprocesses-api-openapi.yml",
+    "google-apps-script-projects-api-openapi.yml",
+    "google-apps-script-scripts-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
