@@ -136,10 +136,6 @@ common:
       - clasp CLI for local development and version control workflows
   - type: Rules
     url: rules/google-apps-script-spectral-rules.yml
-  - type: Capabilities
-    url: capabilities/shared/apps-script.yaml
-  - type: Capabilities
-    url: capabilities/workspace-automation.yaml
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
