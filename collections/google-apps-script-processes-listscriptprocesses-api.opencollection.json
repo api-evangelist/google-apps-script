@@ -1,0 +1,46 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Google Apps Script Processes processes:listScriptProcesses API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "processes:listScriptProcesses",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Google Apps Script List Script Processes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://script.googleapis.com/v1/processes:listScriptProcesses",
+            "params": [
+              {
+                "name": "pageSize",
+                "value": "10",
+                "type": "query"
+              },
+              {
+                "name": "pageToken",
+                "value": "example_value",
+                "type": "query"
+              },
+              {
+                "name": "scriptId",
+                "value": "500123",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List information about a script's executed processes."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

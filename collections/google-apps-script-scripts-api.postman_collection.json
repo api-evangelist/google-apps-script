@@ -1,0 +1,137 @@
+{
+  "item": [
+    {
+      "id": "3c468fe7-8550-4c4b-9043-a20c7ee7d134",
+      "name": "Scripts",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "efc392ca-c1d6-4060-aa47-c4172783bd7a",
+          "name": "Google Apps Script Run Script",
+          "request": {
+            "name": "Google Apps Script Run Script",
+            "description": {
+              "content": "Runs a function in an Apps Script project.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "scripts",
+                "{{scriptId}}:run"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"function\": \"<string>\",\n  \"sessionState\": \"<string>\",\n  \"devMode\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d059a30f-5221-4033-a473-0452424ceda7",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "scripts",
+                    "{{scriptId}}:run"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"function\": \"example_value\",\n  \"parameters\": [],\n  \"sessionState\": \"example_value\",\n  \"devMode\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"done\": true,\n  \"response\": \"example_value\",\n  \"error\": {\n    \"code\": 10,\n    \"message\": \"example_value\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://script.googleapis.com",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) ",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "scriptId"
+    }
+  ],
+  "info": {
+    "_postman_id": "99f915d5-1b1d-4d26-b96f-b9c6de4d46d7",
+    "name": "Google Apps Script Processes Scripts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Apps Script API manages Google Apps Script projects, deployments, versions, and processes. It supports creating script projects, updating content, managing deployments, monitoring execution processes, and remotely running script functions.\n\nContact Support:\n Name: Google",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,315 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Google Apps Script Processes Projects API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Google Apps Script Create Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://script.googleapis.com/v1/projects",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new, empty script project with no script files."
+        },
+        {
+          "info": {
+            "name": "Google Apps Script Get Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://script.googleapis.com/v1/projects/:scriptId",
+            "params": [
+              {
+                "name": "scriptId",
+                "value": "500123",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets a script project's metadata."
+        },
+        {
+          "info": {
+            "name": "Google Apps Script Get Project Content",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://script.googleapis.com/v1/projects/:scriptId/content",
+            "params": [
+              {
+                "name": "scriptId",
+                "value": "500123",
+                "type": "path"
+              },
+              {
+                "name": "versionNumber",
+                "value": "10",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets the content of the script project including code source and metadata."
+        },
+        {
+          "info": {
+            "name": "Google Apps Script Update Project Content",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://script.googleapis.com/v1/projects/:scriptId/content",
+            "params": [
+              {
+                "name": "scriptId",
+                "value": "500123",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the content of the specified script project."
+        },
+        {
+          "info": {
+            "name": "Google Apps Script Get Project Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://script.googleapis.com/v1/projects/:scriptId/metrics",
+            "params": [
+              {
+                "name": "scriptId",
+                "value": "500123",
+                "type": "path"
+              },
+              {
+                "name": "metricsGranularity",
+                "value": "UNSPECIFIED_GRANULARITY",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get metrics data for scripts such as number of executions and active users."
+        },
+        {
+          "info": {
+            "name": "Google Apps Script List Deployments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://script.googleapis.com/v1/projects/:scriptId/deployments",
+            "params": [
+              {
+                "name": "scriptId",
+                "value": "500123",
+                "type": "path"
+              },
+              {
+                "name": "pageSize",
+                "value": "10",
+                "type": "query"
+              },
+              {
+                "name": "pageToken",
+                "value": "example_value",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Lists the deployments of an Apps Script project."
+        },
+        {
+          "info": {
+            "name": "Google Apps Script Create Deployment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://script.googleapis.com/v1/projects/:scriptId/deployments",
+            "params": [
+              {
+                "name": "scriptId",
+                "value": "500123",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a deployment of an Apps Script project."
+        },
+        {
+          "info": {
+            "name": "Google Apps Script Get Deployment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://script.googleapis.com/v1/projects/:scriptId/deployments/:deploymentId",
+            "params": [
+              {
+                "name": "scriptId",
+                "value": "500123",
+                "type": "path"
+              },
+              {
+                "name": "deploymentId",
+                "value": "500123",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets a deployment of an Apps Script project."
+        },
+        {
+          "info": {
+            "name": "Google Apps Script Update Deployment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://script.googleapis.com/v1/projects/:scriptId/deployments/:deploymentId",
+            "params": [
+              {
+                "name": "scriptId",
+                "value": "500123",
+                "type": "path"
+              },
+              {
+                "name": "deploymentId",
+                "value": "500123",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a deployment of an Apps Script project."
+        },
+        {
+          "info": {
+            "name": "Google Apps Script Delete Deployment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://script.googleapis.com/v1/projects/:scriptId/deployments/:deploymentId",
+            "params": [
+              {
+                "name": "scriptId",
+                "value": "500123",
+                "type": "path"
+              },
+              {
+                "name": "deploymentId",
+                "value": "500123",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes a deployment of an Apps Script project."
+        },
+        {
+          "info": {
+            "name": "Google Apps Script List Versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://script.googleapis.com/v1/projects/:scriptId/versions",
+            "params": [
+              {
+                "name": "scriptId",
+                "value": "500123",
+                "type": "path"
+              },
+              {
+                "name": "pageSize",
+                "value": "10",
+                "type": "query"
+              },
+              {
+                "name": "pageToken",
+                "value": "example_value",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List the versions of a script project."
+        },
+        {
+          "info": {
+            "name": "Google Apps Script Create Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://script.googleapis.com/v1/projects/:scriptId/versions",
+            "params": [
+              {
+                "name": "scriptId",
+                "value": "500123",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new immutable version using the current code."
+        },
+        {
+          "info": {
+            "name": "Google Apps Script Get Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://script.googleapis.com/v1/projects/:scriptId/versions/:versionNumber",
+            "params": [
+              {
+                "name": "scriptId",
+                "value": "500123",
+                "type": "path"
+              },
+              {
+                "name": "versionNumber",
+                "value": "10",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets a version of a script project."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Google Apps Script Processes Scripts API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Scripts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Google Apps Script Run Script",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://script.googleapis.com/v1/scripts/:scriptId:run",
+            "params": [
+              {
+                "name": "scriptId",
+                "value": "500123",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Runs a function in an Apps Script project."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
