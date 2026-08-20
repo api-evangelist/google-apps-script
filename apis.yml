@@ -26,6 +26,13 @@ specificationVersion: '0.23'
 tags:
   - Apps Script
   - Automation
+  - Deployment
+  - Google
+  - Google Workspace
+  - Scripting
+tags_raw:
+  - Apps Script
+  - Automation
   - Deployments
   - Google
   - Google Workspace
@@ -66,6 +73,8 @@ apis:
   humanURL: https://developers.google.com/apps-script/api/concepts
   baseURL: https://script.googleapis.com
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
