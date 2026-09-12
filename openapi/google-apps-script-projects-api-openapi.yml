@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Google Apps Script Processes Projects API
   description: The Apps Script API manages Google Apps Script projects, deployments, versions, and processes. It supports creating script projects, updating content, managing deployments, monitoring execution processes, and remotely running script functions.
@@ -574,59 +574,14 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Version:
+    Deployment:
       type: object
       properties:
-        versionNumber:
-          type: integer
-          example: 10
-        description:
-          type: string
-          example: A sample description.
-        createTime:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
-        scriptId:
+        deploymentId:
           type: string
           example: '500123'
-    UpdateDeploymentRequest:
-      type: object
-      properties:
         deploymentConfig:
           $ref: '#/components/schemas/DeploymentConfig'
-    Content:
-      type: object
-      properties:
-        scriptId:
-          type: string
-          example: '500123'
-        files:
-          type: array
-          items:
-            $ref: '#/components/schemas/File'
-          example: []
-    File:
-      type: object
-      properties:
-        name:
-          type: string
-          example: Example Title
-        type:
-          type: string
-          enum:
-          - ENUM_TYPE_UNSPECIFIED
-          - SERVER_JS
-          - HTML
-          - JSON
-          example: ENUM_TYPE_UNSPECIFIED
-        source:
-          type: string
-          example: example_value
-        createTime:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
         updateTime:
           type: string
           format: date-time
@@ -646,27 +601,51 @@ components:
         description:
           type: string
           example: A sample description.
-    CreateProjectRequest:
+    UpdateDeploymentRequest:
       type: object
       properties:
-        title:
-          type: string
-          example: Example Title
-        parentId:
-          type: string
-          example: '500123'
-    Deployment:
-      type: object
-      properties:
-        deploymentId:
-          type: string
-          example: '500123'
         deploymentConfig:
           $ref: '#/components/schemas/DeploymentConfig'
-        updateTime:
+    Metrics:
+      type: object
+      properties:
+        activeUsers:
+          type: array
+          items:
+            type: object
+          example: []
+        totalExecutions:
+          type: array
+          items:
+            type: object
+          example: []
+        failedExecutions:
+          type: array
+          items:
+            type: object
+          example: []
+    ListVersionsResponse:
+      type: object
+      properties:
+        versions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Version'
+          example: []
+        nextPageToken:
           type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
+          example: example_value
+    ListDeploymentsResponse:
+      type: object
+      properties:
+        deployments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Deployment'
+          example: []
+        nextPageToken:
+          type: string
+          example: example_value
     Project:
       type: object
       properties:
@@ -695,43 +674,64 @@ components:
             name:
               type: string
           example: example_value
-    ListVersionsResponse:
+    Version:
       type: object
       properties:
-        versions:
-          type: array
-          items:
-            $ref: '#/components/schemas/Version'
-          example: []
-        nextPageToken:
+        versionNumber:
+          type: integer
+          example: 10
+        description:
+          type: string
+          example: A sample description.
+        createTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        scriptId:
+          type: string
+          example: '500123'
+    CreateProjectRequest:
+      type: object
+      properties:
+        title:
+          type: string
+          example: Example Title
+        parentId:
+          type: string
+          example: '500123'
+    File:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Example Title
+        type:
+          type: string
+          enum:
+          - ENUM_TYPE_UNSPECIFIED
+          - SERVER_JS
+          - HTML
+          - JSON
+          example: ENUM_TYPE_UNSPECIFIED
+        source:
           type: string
           example: example_value
-    ListDeploymentsResponse:
-      type: object
-      properties:
-        deployments:
-          type: array
-          items:
-            $ref: '#/components/schemas/Deployment'
-          example: []
-        nextPageToken:
+        createTime:
           type: string
-          example: example_value
-    Metrics:
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        updateTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+    Content:
       type: object
       properties:
-        activeUsers:
+        scriptId:
+          type: string
+          example: '500123'
+        files:
           type: array
           items:
-            type: object
-          example: []
-        totalExecutions:
-          type: array
-          items:
-            type: object
-          example: []
-        failedExecutions:
-          type: array
-          items:
-            type: object
+            $ref: '#/components/schemas/File'
           example: []

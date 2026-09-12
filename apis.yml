@@ -110,6 +110,8 @@ apis:
   - type: JSONLD
     url: json-ld/json-ld.jsonld
 common:
+  - type: Website
+    url: https://www.google.com/
   - type: AgenticAccess
     url: agentic-access/google-apps-script-agentic-access.yml
   - type: VulnerabilityDisclosure
@@ -160,3 +162,5 @@ common:
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-parent: google
+x-relationship: product
