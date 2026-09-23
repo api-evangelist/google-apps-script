@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Google Apps Script Processes Scripts API
+  title: Google Apps Script Scripts API
   description: The Apps Script API manages Google Apps Script projects, deployments, versions, and processes. It supports creating script projects, updating content, managing deployments, monitoring execution processes, and remotely running script functions.
   version: v1
   contact:

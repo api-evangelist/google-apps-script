@@ -1,26 +1,26 @@
 {
   "provider": "google-apps-script",
   "sources": [
-    "google-apps-script-processes-api-openapi.yml",
-    "google-apps-script-processes-listscriptprocesses-api-openapi.yml",
-    "google-apps-script-projects-api-openapi.yml",
-    "google-apps-script-scripts-api-openapi.yml"
+    "_original/openapi.yml"
   ],
   "outputs": [
     "google-apps-script-processes-api-openapi.yml",
-    "google-apps-script-processes-listscriptprocesses-api-openapi.yml",
     "google-apps-script-projects-api-openapi.yml",
-    "google-apps-script-scripts-api-openapi.yml"
+    "google-apps-script-scripts-api-openapi.yml",
+    "google-apps-script-processes-listscriptprocesses-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
   "notes": [
-    "google-apps-script-processes-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "google-apps-script-processes-listscriptprocesses-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "google-apps-script-projects-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "google-apps-script-scripts-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "google-apps-script-processes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "google-apps-script-processes-listscriptprocesses-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "google-apps-script-projects-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "google-apps-script-scripts-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

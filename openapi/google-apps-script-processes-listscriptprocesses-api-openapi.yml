@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Google Apps Script Processes Processes:list Script Processes API
+  title: Google Apps Script Processes:list Script Processes API
   description: The Apps Script API manages Google Apps Script projects, deployments, versions, and processes. It supports creating script projects, updating content, managing deployments, monitoring execution processes, and remotely running script functions.
   version: v1
   contact:
@@ -60,6 +60,17 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ListProcessesResponse:
+      type: object
+      properties:
+        processes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Process'
+          example: []
+        nextPageToken:
+          type: string
+          example: example_value
     Process:
       type: object
       properties:
@@ -80,16 +91,5 @@ components:
           format: date-time
           example: '2026-01-15T10:30:00Z'
         duration:
-          type: string
-          example: example_value
-    ListProcessesResponse:
-      type: object
-      properties:
-        processes:
-          type: array
-          items:
-            $ref: '#/components/schemas/Process'
-          example: []
-        nextPageToken:
           type: string
           example: example_value
