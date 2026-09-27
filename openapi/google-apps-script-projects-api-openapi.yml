@@ -574,6 +574,45 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    Metrics:
+      type: object
+      properties:
+        activeUsers:
+          type: array
+          items:
+            type: object
+          example: []
+        totalExecutions:
+          type: array
+          items:
+            type: object
+          example: []
+        failedExecutions:
+          type: array
+          items:
+            type: object
+          example: []
+    Deployment:
+      type: object
+      properties:
+        deploymentId:
+          type: string
+          example: '500123'
+        deploymentConfig:
+          $ref: '#/components/schemas/DeploymentConfig'
+        updateTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+    CreateProjectRequest:
+      type: object
+      properties:
+        title:
+          type: string
+          example: Example Title
+        parentId:
+          type: string
+          example: '500123'
     DeploymentConfig:
       type: object
       properties:
@@ -589,23 +628,59 @@ components:
         description:
           type: string
           example: A sample description.
-    Deployment:
+    Project:
       type: object
       properties:
-        deploymentId:
+        scriptId:
           type: string
           example: '500123'
-        deploymentConfig:
-          $ref: '#/components/schemas/DeploymentConfig'
+        title:
+          type: string
+          example: Example Title
+        parentId:
+          type: string
+          example: '500123'
+        createTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
         updateTime:
           type: string
           format: date-time
           example: '2026-01-15T10:30:00Z'
-    UpdateDeploymentRequest:
+        creator:
+          type: object
+          properties:
+            email:
+              type: string
+            name:
+              type: string
+          example: example_value
+    File:
       type: object
       properties:
-        deploymentConfig:
-          $ref: '#/components/schemas/DeploymentConfig'
+        name:
+          type: string
+          example: Example Title
+        type:
+          type: string
+          enum:
+          - ENUM_TYPE_UNSPECIFIED
+          - SERVER_JS
+          - HTML
+          - JSON
+          example: ENUM_TYPE_UNSPECIFIED
+        source:
+          type: string
+          example: example_value
+        createTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        updateTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
     ListDeploymentsResponse:
       type: object
       properties:
@@ -644,86 +719,11 @@ components:
         nextPageToken:
           type: string
           example: example_value
-    File:
+    UpdateDeploymentRequest:
       type: object
       properties:
-        name:
-          type: string
-          example: Example Title
-        type:
-          type: string
-          enum:
-          - ENUM_TYPE_UNSPECIFIED
-          - SERVER_JS
-          - HTML
-          - JSON
-          example: ENUM_TYPE_UNSPECIFIED
-        source:
-          type: string
-          example: example_value
-        createTime:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
-        updateTime:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
-    Project:
-      type: object
-      properties:
-        scriptId:
-          type: string
-          example: '500123'
-        title:
-          type: string
-          example: Example Title
-        parentId:
-          type: string
-          example: '500123'
-        createTime:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
-        updateTime:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
-        creator:
-          type: object
-          properties:
-            email:
-              type: string
-            name:
-              type: string
-          example: example_value
-    Metrics:
-      type: object
-      properties:
-        activeUsers:
-          type: array
-          items:
-            type: object
-          example: []
-        totalExecutions:
-          type: array
-          items:
-            type: object
-          example: []
-        failedExecutions:
-          type: array
-          items:
-            type: object
-          example: []
-    CreateProjectRequest:
-      type: object
-      properties:
-        title:
-          type: string
-          example: Example Title
-        parentId:
-          type: string
-          example: '500123'
+        deploymentConfig:
+          $ref: '#/components/schemas/DeploymentConfig'
     Content:
       type: object
       properties:

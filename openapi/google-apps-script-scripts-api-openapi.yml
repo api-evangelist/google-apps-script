@@ -61,6 +61,22 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ExecutionRequest:
+      type: object
+      properties:
+        function:
+          type: string
+          example: example_value
+        parameters:
+          type: array
+          items: {}
+          example: []
+        sessionState:
+          type: string
+          example: example_value
+        devMode:
+          type: boolean
+          example: true
     Operation:
       type: object
       properties:
@@ -78,19 +94,3 @@ components:
             message:
               type: string
           example: example_value
-    ExecutionRequest:
-      type: object
-      properties:
-        function:
-          type: string
-          example: example_value
-        parameters:
-          type: array
-          items: {}
-          example: []
-        sessionState:
-          type: string
-          example: example_value
-        devMode:
-          type: boolean
-          example: true
