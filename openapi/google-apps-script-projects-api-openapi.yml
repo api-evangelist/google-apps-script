@@ -574,6 +574,32 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    Content:
+      type: object
+      properties:
+        scriptId:
+          type: string
+          example: '500123'
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/File'
+          example: []
+    DeploymentConfig:
+      type: object
+      properties:
+        scriptId:
+          type: string
+          example: '500123'
+        versionNumber:
+          type: integer
+          example: 10
+        manifestFileName:
+          type: string
+          example: example_value
+        description:
+          type: string
+          example: A sample description.
     Metrics:
       type: object
       properties:
@@ -592,6 +618,17 @@ components:
           items:
             type: object
           example: []
+    ListDeploymentsResponse:
+      type: object
+      properties:
+        deployments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Deployment'
+          example: []
+        nextPageToken:
+          type: string
+          example: example_value
     Deployment:
       type: object
       properties:
@@ -604,6 +641,22 @@ components:
           type: string
           format: date-time
           example: '2026-01-15T10:30:00Z'
+    Version:
+      type: object
+      properties:
+        versionNumber:
+          type: integer
+          example: 10
+        description:
+          type: string
+          example: A sample description.
+        createTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        scriptId:
+          type: string
+          example: '500123'
     CreateProjectRequest:
       type: object
       properties:
@@ -613,21 +666,47 @@ components:
         parentId:
           type: string
           example: '500123'
-    DeploymentConfig:
+    File:
       type: object
       properties:
-        scriptId:
+        name:
           type: string
-          example: '500123'
-        versionNumber:
-          type: integer
-          example: 10
-        manifestFileName:
+          example: Example Title
+        type:
+          type: string
+          enum:
+          - ENUM_TYPE_UNSPECIFIED
+          - SERVER_JS
+          - HTML
+          - JSON
+          example: ENUM_TYPE_UNSPECIFIED
+        source:
           type: string
           example: example_value
-        description:
+        createTime:
           type: string
-          example: A sample description.
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        updateTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+    UpdateDeploymentRequest:
+      type: object
+      properties:
+        deploymentConfig:
+          $ref: '#/components/schemas/DeploymentConfig'
+    ListVersionsResponse:
+      type: object
+      properties:
+        versions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Version'
+          example: []
+        nextPageToken:
+          type: string
+          example: example_value
     Project:
       type: object
       properties:
@@ -656,82 +735,3 @@ components:
             name:
               type: string
           example: example_value
-    File:
-      type: object
-      properties:
-        name:
-          type: string
-          example: Example Title
-        type:
-          type: string
-          enum:
-          - ENUM_TYPE_UNSPECIFIED
-          - SERVER_JS
-          - HTML
-          - JSON
-          example: ENUM_TYPE_UNSPECIFIED
-        source:
-          type: string
-          example: example_value
-        createTime:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
-        updateTime:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
-    ListDeploymentsResponse:
-      type: object
-      properties:
-        deployments:
-          type: array
-          items:
-            $ref: '#/components/schemas/Deployment'
-          example: []
-        nextPageToken:
-          type: string
-          example: example_value
-    Version:
-      type: object
-      properties:
-        versionNumber:
-          type: integer
-          example: 10
-        description:
-          type: string
-          example: A sample description.
-        createTime:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
-        scriptId:
-          type: string
-          example: '500123'
-    ListVersionsResponse:
-      type: object
-      properties:
-        versions:
-          type: array
-          items:
-            $ref: '#/components/schemas/Version'
-          example: []
-        nextPageToken:
-          type: string
-          example: example_value
-    UpdateDeploymentRequest:
-      type: object
-      properties:
-        deploymentConfig:
-          $ref: '#/components/schemas/DeploymentConfig'
-    Content:
-      type: object
-      properties:
-        scriptId:
-          type: string
-          example: '500123'
-        files:
-          type: array
-          items:
-            $ref: '#/components/schemas/File'
-          example: []
