@@ -1,4 +1,4 @@
-# Google Apps Script (google-apps-script)
+# Google Apps Script
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,69 +66,205 @@
 
 The Apps Script API provides programmatic access to manage Google Apps Script projects, deployments, and executions. It enables creating and updating script projects, managing project versions and deployments, monitoring script processes, and remotely executing Apps Script functions. The API is essential for automating Apps Script project management and integrating script execution into external applications.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/google-apps-script/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/google-apps-script/refs/heads/main/apis.yml)
+**Areas:** Apps Script · Automation · Deployment · Google · Google Workspace · Scripting
 
-## Scope
+## Google Apps Script on APIs.io
 
-- **Type:** Index
+Everything profiled for Google Apps Script is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/google-apps-script/](https://apis.io/providers/google-apps-script/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (4)
 
-- Apps Script
-- Automation
-- Deployments
-- Google
-- Google Workspace
-- Scripting
+- [Google Apps Script Processes API](https://apis.io/apis/google-apps-script/google-apps-script-processes-api/) — The Processes API from Google Apps Script — 1 operation(s) for processes.
+- [Google Apps Script processes:listScriptProcesses API](https://apis.io/apis/google-apps-script/google-apps-script-processes-listscriptprocesses-api/) — The processes:listScriptProcesses API from Google Apps Script — 1 operation(s) for processes:listscriptprocesses.
+- [Google Apps Script Projects API](https://apis.io/apis/google-apps-script/google-apps-script-projects-api/) — The Projects API from Google Apps Script — 8 operation(s) for projects.
+- [Google Apps Script Scripts API](https://apis.io/apis/google-apps-script/google-apps-script-scripts-api/) — The Scripts API from Google Apps Script — 1 operation(s) for scripts.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-13
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Google Apps Script API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The Apps Script API manages Google Apps Script projects, deployments, versions, and processes. It supports creating script projects, updating content, managing deployments, monitoring execution processes, and remotely running script functions.
+- [Google Apps Script Agentic Access](https://apis.io/agentic-access/google-apps-script/google-apps-script-agentic-access/)
 
-- **Human URL:** [https://developers.google.com/apps-script/api/concepts](https://developers.google.com/apps-script/api/concepts)
-- **Base URL:** `https://script.googleapis.com`
+#### JSON Schema (15)
 
-#### Tags
+The data models the API reads and writes.
 
-- Automation
-- Deployments
-- Projects
-- Scripting
+- [Content](https://apis.io/schemas/google-apps-script/openapi-content/)
+- [CreateProjectRequest](https://apis.io/schemas/google-apps-script/openapi-create-project-request/)
+- [Deployment](https://apis.io/schemas/google-apps-script/openapi-deployment/)
+- [DeploymentConfig](https://apis.io/schemas/google-apps-script/openapi-deployment-config/)
+- [ExecutionRequest](https://apis.io/schemas/google-apps-script/openapi-execution-request/)
+- [File](https://apis.io/schemas/google-apps-script/openapi-file/)
+- [ListDeploymentsResponse](https://apis.io/schemas/google-apps-script/openapi-list-deployments-response/)
+- [ListProcessesResponse](https://apis.io/schemas/google-apps-script/openapi-list-processes-response/)
+- [ListVersionsResponse](https://apis.io/schemas/google-apps-script/openapi-list-versions-response/)
+- [Metrics](https://apis.io/schemas/google-apps-script/openapi-metrics/)
+- [Operation](https://apis.io/schemas/google-apps-script/openapi-operation/)
+- [Process](https://apis.io/schemas/google-apps-script/openapi-process/)
+- [Project](https://apis.io/schemas/google-apps-script/openapi-project/)
+- [UpdateDeploymentRequest](https://apis.io/schemas/google-apps-script/openapi-update-deployment-request/)
+- [Version](https://apis.io/schemas/google-apps-script/openapi-version/)
 
-#### Properties
+#### JSON Structure (15)
 
-- [OpenAPI](openapi/openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/openapi.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/openapi.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/json-schema.yml) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](json-ld/json-ld.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
+Data models expressed in JSON Structure.
 
-## Common Properties
+- [Openapi Content Structure](https://apis.io/json-structure/google-apps-script/openapi-content-structure/)
+- [Openapi Create Project Request Structure](https://apis.io/json-structure/google-apps-script/openapi-create-project-request-structure/)
+- [Openapi Deployment Config Structure](https://apis.io/json-structure/google-apps-script/openapi-deployment-config-structure/)
+- [Openapi Deployment Structure](https://apis.io/json-structure/google-apps-script/openapi-deployment-structure/)
+- [Openapi Execution Request Structure](https://apis.io/json-structure/google-apps-script/openapi-execution-request-structure/)
+- [Openapi File Structure](https://apis.io/json-structure/google-apps-script/openapi-file-structure/)
+- [Openapi List Deployments Response Structure](https://apis.io/json-structure/google-apps-script/openapi-list-deployments-response-structure/)
+- [Openapi List Processes Response Structure](https://apis.io/json-structure/google-apps-script/openapi-list-processes-response-structure/)
+- [Openapi List Versions Response Structure](https://apis.io/json-structure/google-apps-script/openapi-list-versions-response-structure/)
+- [Openapi Metrics Structure](https://apis.io/json-structure/google-apps-script/openapi-metrics-structure/)
+- [Openapi Operation Structure](https://apis.io/json-structure/google-apps-script/openapi-operation-structure/)
+- [Openapi Process Structure](https://apis.io/json-structure/google-apps-script/openapi-process-structure/)
+- [Openapi Project Structure](https://apis.io/json-structure/google-apps-script/openapi-project-structure/)
+- [Openapi Update Deployment Request Structure](https://apis.io/json-structure/google-apps-script/openapi-update-deployment-request-structure/)
+- [Openapi Version Structure](https://apis.io/json-structure/google-apps-script/openapi-version-structure/)
 
-- [Getting Started](https://developers.google.com/apps-script/api/concepts)
-- [Pricing](https://developers.google.com/apps-script/guides/services/quotas)
-- [JSON-LD](json-ld/json-ld.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [GitHub Organization](https://github.com/googleworkspace)
-- [SDK](https://developers.google.com/apps-script/api/quickstart/nodejs)
-- [C L I](https://developers.google.com/apps-script/guides/clasp)
+#### JSON-LD (2)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Json Ld Context](https://apis.io/jsonld/google-apps-script/json-ld/)
+- [Openapi Context](https://apis.io/jsonld/google-apps-script/openapi-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [google-apps-script API Vocabulary](https://apis.io/vocabularies/google-apps-script/google-apps-script-vocabulary/)
+
+#### Examples (15)
+
+Example requests and responses.
+
+- [Openapi Content Example](https://apis.io/examples/google-apps-script/openapi-content-example/)
+- [Openapi Create Project Request Example](https://apis.io/examples/google-apps-script/openapi-create-project-request-example/)
+- [Openapi Deployment Config Example](https://apis.io/examples/google-apps-script/openapi-deployment-config-example/)
+- [Openapi Deployment Example](https://apis.io/examples/google-apps-script/openapi-deployment-example/)
+- [Openapi Execution Request Example](https://apis.io/examples/google-apps-script/openapi-execution-request-example/)
+- [Openapi File Example](https://apis.io/examples/google-apps-script/openapi-file-example/)
+- [Openapi List Deployments Response Example](https://apis.io/examples/google-apps-script/openapi-list-deployments-response-example/)
+- [Openapi List Processes Response Example](https://apis.io/examples/google-apps-script/openapi-list-processes-response-example/)
+- [Openapi List Versions Response Example](https://apis.io/examples/google-apps-script/openapi-list-versions-response-example/)
+- [Openapi Metrics Example](https://apis.io/examples/google-apps-script/openapi-metrics-example/)
+- [Openapi Operation Example](https://apis.io/examples/google-apps-script/openapi-operation-example/)
+- [Openapi Process Example](https://apis.io/examples/google-apps-script/openapi-process-example/)
+- [Openapi Project Example](https://apis.io/examples/google-apps-script/openapi-project-example/)
+- [Openapi Update Deployment Request Example](https://apis.io/examples/google-apps-script/openapi-update-deployment-request-example/)
+- [Openapi Version Example](https://apis.io/examples/google-apps-script/openapi-version-example/)
+
+#### Collections (5)
+
+Postman and Open Collection request collections.
+
+- [Google Apps Script Processes API](https://apis.io/collections/google-apps-script/open-google-apps-script-processes-api/)
+- [Google Apps Script Processes processes:listScriptProcesses API](https://apis.io/collections/google-apps-script/open-google-apps-script-processes-listscriptprocesses-api/)
+- [Google Apps Script Processes Projects API](https://apis.io/collections/google-apps-script/open-google-apps-script-projects-api/)
+- [Google Apps Script Processes Scripts API](https://apis.io/collections/google-apps-script/open-google-apps-script-scripts-api/)
+- [Google Apps Script API](https://apis.io/collections/google-apps-script/open-openapi/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Google Apps Script — jsonschema rules](https://apis.io/rules/google-apps-script/google-apps-script-jsonschema-spectral-rules/)
+- [Google Apps Script API Rules](https://apis.io/rules/google-apps-script/google-apps-script-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Google Apps Script Domain Security](https://apis.io/security/google-apps-script/google-apps-script-domain-security/)
+- [Google Apps Script Vulnerability Disclosure](https://apis.io/security/google-apps-script/google-apps-script-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Google Apps Script Plans Pricing](https://apis.io/plans/google-apps-script/google-apps-script-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Google Apps Script Rate Limits](https://apis.io/rate-limits/google-apps-script/google-apps-script-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Google Apps Script Finops](https://apis.io/finops/google-apps-script/google-apps-script-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.google.com/)
 - [Documentation](https://developers.google.com/apps-script/reference)
+- [Getting started](https://developers.google.com/apps-script/api/concepts)
+- [Pricing](https://developers.google.com/apps-script/guides/services/quotas)
 - [Support](https://developers.google.com/apps-script/support)
 - [Blog](https://developers.google.com/apps-script/updates)
-- [Features](undefined)
-- [Use Cases](undefined)
-- [Integrations](undefined)
-- [Rules](rules/google-apps-script-spectral-rules.yml)
-- [Capabilities](capabilities/shared/apps-script.yaml)
-- [Capabilities](capabilities/workspace-automation.yaml)
+- [GitHub](https://github.com/googleworkspace)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 34.6** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 54.7 |
+| Contract governance | 13.6 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 40.5 |
+| Access clarity | 18.4 |
+
+**Agent readiness 20.4** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/google-apps-script/](https://apis.io/providers/google-apps-script/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Google Apps Script: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/google-apps-script/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
